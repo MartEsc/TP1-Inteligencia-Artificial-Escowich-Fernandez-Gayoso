@@ -11,6 +11,7 @@ public class Nodo {
 	public Nodo(int identificador) {
 		super();
 		this.identificador = identificador;
+		this.hayPokebola=false;
 	}
 	public int getIdentificador() {
 		return identificador;
@@ -37,6 +38,19 @@ public class Nodo {
 		this.nodosVecinos = nodosVecinos;
 	}
 	
+	@Override
+	public String toString() {
+		StringBuffer str = new StringBuffer();
+		str.append("Nodo numero : "+ identificador +
+					"  /  Hay pokebola?: "+ hayPokebola);
+		if(!this.hayPokebola) {
+			str.append("  /  Ocupante: "+ocupante);
+		}
+		else {
+			str.append("  /  No hay ocupante\n");
+		}
+		return str.toString();
+	}
 	
 	
 }

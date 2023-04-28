@@ -1,7 +1,9 @@
 package tpIA;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import frsf.cidisi.faia.state.EnvironmentState;
@@ -9,14 +11,17 @@ import frsf.cidisi.faia.state.EnvironmentState;
 public class PokemonEnvironmentState extends EnvironmentState {
 	
 	
-	ArrayList<Nodo> listaNodos;
+	ArrayList<Nodo> listaNodos = new ArrayList<>();
+	ArrayList<enemigoGenerico> listaEnemigos = new ArrayList<enemigoGenerico>();
+	HashMap<Nodo,enemigoGenerico> mapaEnemigos = new HashMap<>();
+	ArrayList<Integer> pokebolas;
 	int nodoActualAgente = 1;
-	HashMap<Nodo,enemigoGenerico> enemigosEnElMapa;
 	int contadorSatelite;
 	
 	@Override
 	public void initState() {
 		listaNodos = new ArrayList<Nodo>();
+		listaNodos.add(new Nodo(0));
 		listaNodos.add(new Nodo(1));
 		listaNodos.add(new Nodo(2));
 		listaNodos.add(new Nodo(3));
@@ -45,19 +50,34 @@ public class PokemonEnvironmentState extends EnvironmentState {
 		listaNodos.add(new Nodo(26));
 		listaNodos.add(new Nodo(27));
 		listaNodos.add(new Nodo(28));
-		listaNodos.add(new Nodo(29));
 		
-		ArrayList<Integer> pokebolas = new ArrayList<Integer>(5);
+		generarEnemigos();
+		pokebolas = new ArrayList<Integer>(5);
+		System.out.println(pokebolas.toString());
 		for(int i=0;i<5;i++) {
-			pokebolas.add((ThreadLocalRandom.current().nextInt(1,30)));
+			int newInt = new Random().nextInt(1,30);
+			if(!pokebolas.contains(newInt)) {
+				pokebolas.add(newInt);
+			}
+			else {
+				i--;
+			}
 			
 		}
-		for(int i=1;i<30;i++) {
-			if(pokebolas.contains(i)) {
+		System.out.println(pokebolas.toString());
+		int iteradorEnemigos = 0;
+		for(int i=0;i<29;i++) {
+			if(pokebolas.contains((Integer) i)) {
 				listaNodos.get(i).setHayPokebola(true);
 			}
 			else {
-				listaNodos.get(i).setOcupante(new enemigoGenerico());
+				System.out.println("Iterador enemigos "+iteradorEnemigos+"\n i: "+i);
+				listaNodos.get(i).setOcupante(listaEnemigos.get(iteradorEnemigos));
+				
+				listaEnemigos.get(iteradorEnemigos).setUbicacionActualEnemigo(listaNodos.get(i));
+				System.out.println("Nodo "+i+"  "+listaNodos.get(i).getOcupante()+"\n");
+				mapaEnemigos.put(listaNodos.get(i),listaEnemigos.get(iteradorEnemigos));
+				iteradorEnemigos++;
 			}
 		}
 		
@@ -65,12 +85,32 @@ public class PokemonEnvironmentState extends EnvironmentState {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuffer str = new StringBuffer();
+		str.append("Estado del environment ");
+		/*
+		 * str.append(listaNodos.toString()); for (enemigoGenerico enemigoGenerico :
+		 * listaEnemigos) { str.append(enemigoGenerico.toString()+"\n"); } for(int
+		 * i=0;i<5;i++) { str.append("Pokebola "+(i+1)+" :"+pokebolas.get(i)+"\n"); }
+		 * str.append("Cant nodos: \n"); str.append(listaNodos.size());
+		 * str.append("\nCant enemigos: \n"); str.append(listaEnemigos.size());
+		 */
+		for (Nodo nodo : listaNodos) {
+			str.append(nodo.toString()+"\n");
+		}
+		return str.toString();
 	}
 	
 	public Nodo getAgentPosition() {
 		return listaNodos.get(nodoActualAgente);
+	}
+	
+	public void generarEnemigos() {
+		for(int i=0;i<25;i++) {
+			listaEnemigos.add(new enemigoGenerico(i,Math.abs(new Random().nextInt()%20)));
+			listaEnemigos.get(i).setUbicacionActualEnemigo(new Nodo(-1));
+		}
+		Collections.shuffle(listaEnemigos);
+		
 	}
 
 }
