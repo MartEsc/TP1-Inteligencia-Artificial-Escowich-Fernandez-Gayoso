@@ -90,7 +90,7 @@ public class PokemonEnvironmentState extends EnvironmentState {
 		/*
 		 * str.append(listaNodos.toString()); for (enemigoGenerico enemigoGenerico :
 		 * listaEnemigos) { str.append(enemigoGenerico.toString()+"\n"); } for(int
-		 * i=0;i<5;i++) { str.append("Pokebola "+(i+1)+" :"+pokebolas.get(i)+"\n"); }
+		 * i=0;i<5;i++) { str.asppend("Pokebola "+(i+1)+" :"+pokebolas.get(i)+"\n"); }
 		 * str.append("Cant nodos: \n"); str.append(listaNodos.size());
 		 * str.append("\nCant enemigos: \n"); str.append(listaEnemigos.size());
 		 */
@@ -111,6 +111,55 @@ public class PokemonEnvironmentState extends EnvironmentState {
 		}
 		Collections.shuffle(listaEnemigos);
 		
+	}
+	public void linkearNodos() {
+		//nodo 1
+		listaNodos.get(0).addVecino(listaNodos.get(1));
+		listaNodos.get(0).addVecino(listaNodos.get(3));
+		//nodo 2
+		listaNodos.get(1).addVecino(listaNodos.get(0));
+		listaNodos.get(1).addVecino(listaNodos.get(2));
+		//nodo 3
+		listaNodos.get(2).addVecino(listaNodos.get(1));
+		listaNodos.get(2).addVecino(listaNodos.get(3));
+		//nodo 4
+		listaNodos.get(3).addVecino(listaNodos.get(0));
+		listaNodos.get(3).addVecino(listaNodos.get(2));
+		listaNodos.get(3).addVecino(listaNodos.get(6));
+		//nodo 5
+		listaNodos.get(4).addVecino(listaNodos.get(3));
+		listaNodos.get(4).addVecino(listaNodos.get(5));
+		listaNodos.get(4).addVecino(listaNodos.get(7));
+		//nodo 6
+		listaNodos.get(5).addVecino(listaNodos.get(4));
+		listaNodos.get(5).addVecino(listaNodos.get(6));
+		//nodo 7
+		listaNodos.get(6).addVecino(listaNodos.get(3));
+		listaNodos.get(6).addVecino(listaNodos.get(5));
+		listaNodos.get(6).addVecino(listaNodos.get(9));
+		listaNodos.get(6).addVecino(listaNodos.get(28));
+		//nodo 8
+		//nodo 9
+		//nodo 10
+		//nodo 11
+		//nodo 12
+		//nodo 13
+		//nodo 14
+		//nodo 15
+		//nodo 16
+		//nodo 17
+		//nodo 18
+		//nodo 19
+		//nodo 20
+		//nodo 21
+		//nodo 22
+		//nodo 23
+		//nodo 24
+		//nodo 25
+		//nodo 26
+		//nodo 27
+		//nodo 28
+		//nodo 29
 	}
 
 }

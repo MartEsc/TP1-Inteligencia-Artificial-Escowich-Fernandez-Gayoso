@@ -12,6 +12,7 @@ public class Nodo {
 		super();
 		this.identificador = identificador;
 		this.hayPokebola=false;
+		this.nodosVecinos = new ArrayList<Nodo>();
 	}
 	public int getIdentificador() {
 		return identificador;
@@ -37,7 +38,9 @@ public class Nodo {
 	public void setNodosVecinos(ArrayList<Nodo> nodosVecinos) {
 		this.nodosVecinos = nodosVecinos;
 	}
-	
+	public void addVecino(Nodo nodoVecino) {
+		this.nodosVecinos.add(nodoVecino);
+	}
 	@Override
 	public String toString() {
 		StringBuffer str = new StringBuffer();
