@@ -6,7 +6,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/faia/lib/jpl.jar"/>
-	<classpathentry kind="lib" path="/faia/lib/jmathlink.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Joaco/Downloads/ar.edu.utn.frsf.cidisi.faia/lib/jpl.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Joaco/Downloads/ar.edu.utn.frsf.cidisi.faia/lib/jmathlink.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

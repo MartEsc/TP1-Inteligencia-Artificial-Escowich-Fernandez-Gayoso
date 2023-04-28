@@ -125,6 +125,7 @@ public class PokemonEnvironmentState extends EnvironmentState {
 		//nodo 4
 		listaNodos.get(3).addVecino(listaNodos.get(0));
 		listaNodos.get(3).addVecino(listaNodos.get(2));
+		listaNodos.get(3).addVecino(listaNodos.get(4));
 		listaNodos.get(3).addVecino(listaNodos.get(6));
 		//nodo 5
 		listaNodos.get(4).addVecino(listaNodos.get(3));
@@ -139,27 +140,86 @@ public class PokemonEnvironmentState extends EnvironmentState {
 		listaNodos.get(6).addVecino(listaNodos.get(9));
 		listaNodos.get(6).addVecino(listaNodos.get(28));
 		//nodo 8
+		listaNodos.get(7).addVecino(listaNodos.get(4));
+		listaNodos.get(7).addVecino(listaNodos.get(8));
+		listaNodos.get(7).addVecino(listaNodos.get(9));
 		//nodo 9
+		listaNodos.get(8).addVecino(listaNodos.get(7));
 		//nodo 10
+		listaNodos.get(9).addVecino(listaNodos.get(6));
+		listaNodos.get(9).addVecino(listaNodos.get(7));
+		listaNodos.get(9).addVecino(listaNodos.get(10));
+		listaNodos.get(9).addVecino(listaNodos.get(11));
 		//nodo 11
+		listaNodos.get(10).addVecino(listaNodos.get(9));
+		listaNodos.get(10).addVecino(listaNodos.get(11));
+		listaNodos.get(10).addVecino(listaNodos.get(14));
 		//nodo 12
+		listaNodos.get(11).addVecino(listaNodos.get(9));
+		listaNodos.get(11).addVecino(listaNodos.get(10));
+		listaNodos.get(11).addVecino(listaNodos.get(12));
 		//nodo 13
+		listaNodos.get(12).addVecino(listaNodos.get(11));
+		listaNodos.get(12).addVecino(listaNodos.get(13));
+		listaNodos.get(12).addVecino(listaNodos.get(27));
 		//nodo 14
+		listaNodos.get(13).addVecino(listaNodos.get(12));
+		listaNodos.get(13).addVecino(listaNodos.get(14));
+		listaNodos.get(13).addVecino(listaNodos.get(15));
+		listaNodos.get(13).addVecino(listaNodos.get(23));
+		listaNodos.get(13).addVecino(listaNodos.get(27));
 		//nodo 15
+		listaNodos.get(14).addVecino(listaNodos.get(10));
+		listaNodos.get(14).addVecino(listaNodos.get(13));
 		//nodo 16
+		listaNodos.get(15).addVecino(listaNodos.get(13));
+		listaNodos.get(15).addVecino(listaNodos.get(16));
+		listaNodos.get(15).addVecino(listaNodos.get(17));
 		//nodo 17
+		listaNodos.get(16).addVecino(listaNodos.get(15));
 		//nodo 18
+		listaNodos.get(17).addVecino(listaNodos.get(15));
+		listaNodos.get(17).addVecino(listaNodos.get(18));
 		//nodo 19
+		listaNodos.get(18).addVecino(listaNodos.get(17));
+		listaNodos.get(18).addVecino(listaNodos.get(19));
+		listaNodos.get(18).addVecino(listaNodos.get(23));
 		//nodo 20
+		listaNodos.get(19).addVecino(listaNodos.get(18));
+		listaNodos.get(19).addVecino(listaNodos.get(20));
 		//nodo 21
+		listaNodos.get(20).addVecino(listaNodos.get(19));
+		listaNodos.get(20).addVecino(listaNodos.get(21));
 		//nodo 22
+		listaNodos.get(21).addVecino(listaNodos.get(20));
+		listaNodos.get(21).addVecino(listaNodos.get(22));
+		listaNodos.get(21).addVecino(listaNodos.get(25));
 		//nodo 23
+		listaNodos.get(22).addVecino(listaNodos.get(21));
+		listaNodos.get(22).addVecino(listaNodos.get(23));
 		//nodo 24
+		listaNodos.get(23).addVecino(listaNodos.get(13));
+		listaNodos.get(23).addVecino(listaNodos.get(18));
+		listaNodos.get(23).addVecino(listaNodos.get(22));
+		listaNodos.get(23).addVecino(listaNodos.get(24));
 		//nodo 25
+		listaNodos.get(24).addVecino(listaNodos.get(23));
+		listaNodos.get(24).addVecino(listaNodos.get(25));
 		//nodo 26
+		listaNodos.get(25).addVecino(listaNodos.get(21));
+		listaNodos.get(25).addVecino(listaNodos.get(24));
+		listaNodos.get(25).addVecino(listaNodos.get(26));
 		//nodo 27
+		listaNodos.get(26).addVecino(listaNodos.get(25));
+		listaNodos.get(26).addVecino(listaNodos.get(27));
 		//nodo 28
+		listaNodos.get(27).addVecino(listaNodos.get(12));
+		listaNodos.get(27).addVecino(listaNodos.get(13));
+		listaNodos.get(27).addVecino(listaNodos.get(26));
+		listaNodos.get(27).addVecino(listaNodos.get(28));
 		//nodo 29
+		listaNodos.get(28).addVecino(listaNodos.get(6));
+		listaNodos.get(28).addVecino(listaNodos.get(27));
 	}
 
 }
