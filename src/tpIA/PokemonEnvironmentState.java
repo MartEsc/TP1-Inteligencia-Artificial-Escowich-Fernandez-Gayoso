@@ -221,5 +221,8 @@ public class PokemonEnvironmentState extends EnvironmentState {
 		listaNodos.get(28).addVecino(listaNodos.get(6));
 		listaNodos.get(28).addVecino(listaNodos.get(27));
 	}
+	public ArrayList<Nodo> getNodosVecinosAgente(int nodoActualAgente){
+		return listaNodos.get(nodoActualAgente-1).getNodosVecinos();
+	}
 
 }

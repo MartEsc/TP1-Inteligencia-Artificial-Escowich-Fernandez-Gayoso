@@ -16,6 +16,8 @@ public class PokemonPerception extends Perception {
 		PokemonEnvironment pokemonEnvironment = (PokemonEnvironment) environment;
 		PokemonEnvironmentState pokemonEnvironmentState = pokemonEnvironment.getEnvironmentState();
 		nodoActualAgente = pokemonEnvironmentState.getAgentPosition().identificador;
+		nodosVecinos = pokemonEnvironmentState.getNodosVecinosAgente(nodoActualAgente);
+		
 	};
 	
 	@Override
