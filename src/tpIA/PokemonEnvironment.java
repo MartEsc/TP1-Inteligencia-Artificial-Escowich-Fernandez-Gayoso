@@ -19,8 +19,10 @@ public class PokemonEnvironment extends Environment {
 	
 	@Override
 	public Perception getPercept() {
-		// TODO Auto-generated method stub
-		return null;
+		PokemonPerception pokemonPerception = new PokemonPerception();
+		int nodoActual = ((PokemonEnvironmentState) this.environmentState).nodoActualAgente;
+		pokemonPerception.setVecinos(((PokemonEnvironmentState) this.environmentState).getNodosVecinosAgente(nodoActual));
+		return pokemonPerception;
 	}
 	
 	@Override
@@ -28,9 +30,7 @@ public class PokemonEnvironment extends Environment {
         return environmentState.toString();
     }
 	
-	public void getVecinos() {
-		
-	}
+
 	
 	
 }

@@ -29,5 +29,8 @@ public class PokemonPerception extends Perception {
 		return str.toString();
 	}
 	
+	public void setVecinos(ArrayList<Nodo> nodosV) {
+		this.nodosVecinos = nodosV;
+		}
 	
 }

@@ -53,7 +53,6 @@ public class PokemonEnvironmentState extends EnvironmentState {
 		
 		generarEnemigos();
 		pokebolas = new ArrayList<Integer>(5);
-		System.out.println(pokebolas.toString());
 		for(int i=0;i<5;i++) {
 			int newInt = new Random().nextInt(1,30);
 			if(!pokebolas.contains(newInt)) {
@@ -87,13 +86,7 @@ public class PokemonEnvironmentState extends EnvironmentState {
 	public String toString() {
 		StringBuffer str = new StringBuffer();
 		str.append("Estado del environment ");
-		/*
-		 * str.append(listaNodos.toString()); for (enemigoGenerico enemigoGenerico :
-		 * listaEnemigos) { str.append(enemigoGenerico.toString()+"\n"); } for(int
-		 * i=0;i<5;i++) { str.asppend("Pokebola "+(i+1)+" :"+pokebolas.get(i)+"\n"); }
-		 * str.append("Cant nodos: \n"); str.append(listaNodos.size());
-		 * str.append("\nCant enemigos: \n"); str.append(listaEnemigos.size());
-		 */
+
 		for (Nodo nodo : listaNodos) {
 			str.append(nodo.toString()+"\n");
 		}
@@ -106,7 +99,7 @@ public class PokemonEnvironmentState extends EnvironmentState {
 	
 	public void generarEnemigos() {
 		for(int i=0;i<25;i++) {
-			listaEnemigos.add(new enemigoGenerico(i,Math.abs(new Random().nextInt()%20)));
+			listaEnemigos.add(new enemigoGenerico(i,(Math.abs(new Random().nextInt()%20)+1)));
 			listaEnemigos.get(i).setUbicacionActualEnemigo(new Nodo(-1));
 		}
 		Collections.shuffle(listaEnemigos);
