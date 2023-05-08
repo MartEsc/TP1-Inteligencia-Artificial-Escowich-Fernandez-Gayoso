@@ -1,5 +1,6 @@
 package tpIA;
 
+
 public class enemigoGenerico {
 	
 	int identificador;
@@ -17,6 +18,22 @@ public class enemigoGenerico {
 		this.defeated = false;
 		
 	}
+	
+	public enemigoGenerico() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public enemigoGenerico clone(){
+		enemigoGenerico newEnemigoGenetico = new enemigoGenerico();
+		
+		newEnemigoGenetico.setIdentificador(this.getIdentificador());
+		newEnemigoGenetico.setEnergia(this.getEnergia());
+		newEnemigoGenetico.setUbicacionActualEnemigo(this.getUbicacionActualEnemigo());;
+		newEnemigoGenetico.setDefeated(this.getDefeated());		
+		
+		return newEnemigoGenetico;
+	}
+	
 	public int getIdentificador() {
 		return identificador;
 	}

@@ -14,6 +14,21 @@ public class Nodo {
 		this.hayPokebola=false;
 		this.nodosVecinos = new ArrayList<Nodo>();
 	}
+	
+	public Nodo() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Nodo clone(){
+		Nodo newNodo = new Nodo();
+		
+		newNodo.setIdentificador(this.getIdentificador());
+		newNodo.setOcupante(this.getOcupante());
+		newNodo.setNodosVecinos(this.getNodosVecinos());;
+		newNodo.setHayPokebola(this.getHayPokebola());		
+		
+		return newNodo;
+	}
 	public int getIdentificador() {
 		return identificador;
 	}
