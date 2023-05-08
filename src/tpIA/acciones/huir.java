@@ -13,17 +13,18 @@ public class huir extends SearchAction{
 	public SearchBasedAgentState execute(SearchBasedAgentState s) {
 		// TODO Auto-generated method stub
 		PokemonAgentState estado = (PokemonAgentState) s;
-		if(estado.getEnergiaDisponible() < estado.getUbicacionActual().getOcupante().getEnergia()
-				&& !estado.getUbicacionActual().getHayPokebola() && !utilizarHabilidades(estado)) {
-			estado.setEnergiaDisponible(estado.getEnergiaDisponible()-(estado.getEnergiaDisponible()/4));
-			estado.setNoPelea(true);
+		if(estado.getUbicacionActual().getOcupante()!=null) {
+			if(estado.getEnergiaDisponible() < estado.getUbicacionActual().getOcupante().getEnergia()
+					&& !utilizarHabilidades(estado)) {
+				estado.setEnergiaDisponible(estado.getEnergiaDisponible()-(estado.getEnergiaDisponible()/4));
+				estado.setNoPelea(true);
+			}
 		}
 		return estado;
 	}
 
 	@Override
 	public Double getCost() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -32,11 +33,14 @@ public class huir extends SearchAction{
 		// TODO Auto-generated method stub
 		PokemonAgentState estado = (PokemonAgentState) ast;
 		PokemonEnvironmentState ambiente = (PokemonEnvironmentState) est;
-		if(estado.getEnergiaDisponible() < ambiente.getAgentPosition().getOcupante().getEnergia()
-				&& !ambiente.getAgentPosition().getHayPokebola() && !utilizarHabilidades(estado)) {
-			estado.setEnergiaDisponible(estado.getEnergiaDisponible()-(estado.getEnergiaDisponible()/4));
-			estado.setNoPelea(true);
+		if(estado.getUbicacionActual().getOcupante()!=null) {
+			if(estado.getEnergiaDisponible() < ambiente.getAgentPosition().getOcupante().getEnergia()
+					&& !ambiente.getAgentPosition().getHayPokebola() && !utilizarHabilidades(estado)) {
+				estado.setEnergiaDisponible(estado.getEnergiaDisponible()-(estado.getEnergiaDisponible()/4));
+				estado.setNoPelea(true);
+			}
 		}
+		System.out.println(this.toString());
 		return ambiente;
 	}
 

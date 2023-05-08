@@ -68,6 +68,8 @@ public class PokemonEnvironmentState extends EnvironmentState {
 		for(int i=0;i<29;i++) {
 			if(pokebolas.contains((Integer) i)) {
 				listaNodos.get(i).setHayPokebola(true);
+				listaNodos.get(i).setOcupante(new enemigoGenerico(i+10000, 1,true));
+				listaNodos.get(i).getOcupante().setUbicacionActualEnemigo(listaNodos.get(i));
 			}
 			else {
 				System.out.println("Iterador enemigos "+iteradorEnemigos+"\n i: "+i);
@@ -79,7 +81,7 @@ public class PokemonEnvironmentState extends EnvironmentState {
 				iteradorEnemigos++;
 			}
 		}
-		
+		linkearNodos();
 	}
 
 	@Override
@@ -241,5 +243,22 @@ public class PokemonEnvironmentState extends EnvironmentState {
 	public void setNodoActualAgente(int nodoActualAgente) {
 		this.nodoActualAgente = nodoActualAgente;
 	}
+
+	public HashMap<Nodo, enemigoGenerico> getMapaEnemigos() {
+		return mapaEnemigos;
+	}
+
+	public void setMapaEnemigos(HashMap<Nodo, enemigoGenerico> mapaEnemigos) {
+		this.mapaEnemigos = mapaEnemigos;
+	}
+
+	public int getContadorSatelite() {
+		return contadorSatelite;
+	}
+
+	public void setContadorSatelite(int contadorSatelite) {
+		this.contadorSatelite = contadorSatelite;
+	}
+	
 
 }

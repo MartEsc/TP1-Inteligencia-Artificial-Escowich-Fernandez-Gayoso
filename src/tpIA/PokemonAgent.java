@@ -5,6 +5,8 @@ import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgent;
+import frsf.cidisi.faia.solver.search.BreathFirstSearch;
+import frsf.cidisi.faia.solver.search.DepthFirstSearch;
 import frsf.cidisi.faia.solver.search.Search;
 import tpIA.acciones.huir;
 import tpIA.acciones.moverANodoAdyacente;
@@ -26,7 +28,7 @@ public class PokemonAgent extends SearchBasedAgent {
 		operadores.addElement(new moverANodoAdyacente());
 		operadores.addElement(new pelear());
 		operadores.addElement(new huir());
-		operadores.addElement(new recargarEnergiaPokebola());;
+		operadores.addElement(new recargarEnergiaPokebola());
 		Problem problem = new Problem(objetivo, estado, operadores);
         this.setProblem(problem);
 	}

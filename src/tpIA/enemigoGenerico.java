@@ -18,6 +18,13 @@ public class enemigoGenerico {
 		this.defeated = false;
 		
 	}
+	public enemigoGenerico(int identificador, int energia,Boolean defeated) {
+		super();
+		this.identificador = identificador;
+		this.energia = energia;
+		this.defeated = defeated;
+		
+	}
 	
 	public enemigoGenerico() {
 		// TODO Auto-generated constructor stub

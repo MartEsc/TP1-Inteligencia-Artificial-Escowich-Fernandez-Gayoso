@@ -17,7 +17,10 @@ public class recargarEnergiaPokebola extends SearchAction {
 		// TODO Auto-generated method stub
 		PokemonAgentState estado = (PokemonAgentState) s;
 		if(estado.getUbicacionActual().getHayPokebola()) {
+			System.out.println("ENTRE Y SE DA QUE "+ estado.getUbicacionActual().getHayPokebola());
 			estado.setEnergiaDisponible(estado.getEnergiaDisponible()+ new Random().nextInt(5, 10));
+			estado.getUbicacionActual().setHayPokebola(false);
+			System.out.println("RECARGANDO ENERGIA EN: " + estado.getUbicacionActual().getHayPokebola());
 		}
 		return estado;
 	}
@@ -41,6 +44,7 @@ public class recargarEnergiaPokebola extends SearchAction {
 				}
 			}
 		}
+		System.out.println("ME MUEVO A " + estado.getUbicacionActual());
 		return ambiente;
 	}
 

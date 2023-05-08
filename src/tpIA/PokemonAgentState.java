@@ -1,7 +1,9 @@
 package tpIA;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
@@ -27,7 +29,10 @@ public class PokemonAgentState extends SearchBasedAgentState{
 	@Override
 	public boolean equals(Object obj) {
 		// TODO Auto-generated method stub
-		return false;
+		PokemonAgentState estadoComparado = (PokemonAgentState) obj;
+		boolean mismaEnergia = estadoComparado.getEnergiaDisponible()==(this.getEnergiaDisponible());
+		boolean mismaUbicacion = estadoComparado.getUbicacionActual().equals(this.getUbicacionActual());
+		return (mismaEnergia && mismaUbicacion);
 	}
 
 	@Override
@@ -52,7 +57,8 @@ public class PokemonAgentState extends SearchBasedAgentState{
 		nuevoEstadoPokemon.setUbicacionActual(newUbicacion);
 		Mapa newMapa = this.getMapaMundiHeroe().clone();
 		nuevoEstadoPokemon.setMapaMundiHeroe(newMapa);
-		return null;
+		
+		return nuevoEstadoPokemon;
 	}
 
 	@Override
@@ -66,11 +72,23 @@ public class PokemonAgentState extends SearchBasedAgentState{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public void initState() {
+	
+	public void initUnState(PokemonEnvironmentState ambiente) {
 		// TODO Auto-generated method stub
-		
+		identificador=1;
+		//energiaInicial= new Random().nextInt(10, 20);
+		energiaInicial= 30;
+		energiaDisponible = energiaInicial;
+		contadorPoder1=0;
+		contadorPoder2=0;
+		contadorPoder3=0;
+		poder1Disponible=false;
+		poder2Disponible=false;
+		poder3Disponible=false;
+		ubicacionActual = ambiente.getListaNodos().get(0);
+		derrotados= new ArrayList<enemigoGenerico>();
+		noPelea=false;
+		mapaMundiHeroe = new Mapa(ambiente.getListaNodos(), ambiente.getMapaEnemigos(), ambiente.getContadorSatelite());
 	}
 
 	public int getIdentificador() {
@@ -143,6 +161,7 @@ public class PokemonAgentState extends SearchBasedAgentState{
 
 	public void setUbicacionActual(Nodo ubicacionActual) {
 		this.ubicacionActual = ubicacionActual;
+		
 	}
 
 	public ArrayList<enemigoGenerico> getDerrotados() {
@@ -175,6 +194,12 @@ public class PokemonAgentState extends SearchBasedAgentState{
 
 	public void setEnergiaInicial(float energiaInicial) {
 		this.energiaInicial = energiaInicial;
+	}
+
+	@Override
+	public void initState() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

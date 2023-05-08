@@ -13,29 +13,35 @@ public class pelear extends SearchAction{
 	@Override
 	public SearchBasedAgentState execute(SearchBasedAgentState s) {
 		// TODO Auto-generated method stub
+		
 		PokemonAgentState estado = (PokemonAgentState) s;
-		if(estado.getEnergiaDisponible() > estado.getUbicacionActual().getOcupante().getEnergia() && !estado.getUbicacionActual().getHayPokebola()) {
-			enemigoGenerico enemigo = estado.getUbicacionActual().getOcupante();
-			estado.setEnergiaDisponible(estado.getEnergiaDisponible()+enemigo.getEnergia()*0.2f);
-			estado.getUbicacionActual().getOcupante().setEnergia(0);
-			estado.getDerrotados().add(estado.getUbicacionActual().getOcupante());
-			estado.getUbicacionActual().getOcupante().setDefeated(true);
-		}
-		else if(this.utilizarHabilidades(estado) && !estado.getUbicacionActual().getHayPokebola()) { //funcion que evalua y usa habilidades
-			enemigoGenerico enemigo = estado.getUbicacionActual().getOcupante();
-			estado.setEnergiaDisponible(estado.getEnergiaDisponible()+enemigo.getEnergia()*0.2f);
-			estado.getUbicacionActual().getOcupante().setEnergia(0);
-			estado.getDerrotados().add(estado.getUbicacionActual().getOcupante());
-			estado.getUbicacionActual().getOcupante().setDefeated(true);
-		}
-		if(estado.getEnergiaDisponible() > estado.getEnergiaInicial()*1.25) {
-			estado.setPoder1Disponible(true);
-		}
-		else if(estado.getEnergiaDisponible() > estado.getEnergiaInicial()*1.75) {
-			estado.setPoder2Disponible(true);
-		}
-		else if(estado.getEnergiaDisponible() > estado.getEnergiaInicial()*2.2) {
-			estado.setPoder3Disponible(true);
+		
+		if(estado.getUbicacionActual().getOcupante()!=null) {
+			if(estado.getEnergiaDisponible() > estado.getUbicacionActual().getOcupante().getEnergia() && !estado.getUbicacionActual().getOcupante().getDefeated()) {
+				enemigoGenerico enemigo = estado.getUbicacionActual().getOcupante();
+				estado.setEnergiaDisponible(estado.getEnergiaDisponible()+enemigo.getEnergia()*0.2f);
+				estado.getUbicacionActual().getOcupante().setEnergia(0);
+				estado.getDerrotados().add(estado.getUbicacionActual().getOcupante());
+				estado.getUbicacionActual().getOcupante().setDefeated(true);
+				System.out.println("DERROTADO ENEMIGO EN "+estado.getUbicacionActual()+"   ENERGIA RESTANTE:  "+estado.getEnergiaDisponible());
+			}
+			else if(this.utilizarHabilidades(estado) && !estado.getUbicacionActual().getHayPokebola()) { //funcion que evalua y usa habilidades
+				enemigoGenerico enemigo = estado.getUbicacionActual().getOcupante();
+				estado.setEnergiaDisponible(estado.getEnergiaDisponible()+enemigo.getEnergia()*0.2f);
+				estado.getUbicacionActual().getOcupante().setEnergia(0);
+				estado.getDerrotados().add(estado.getUbicacionActual().getOcupante());
+				estado.getUbicacionActual().getOcupante().setDefeated(true);
+				System.out.println("DERROTADO ENEMIGO EN "+estado.getUbicacionActual()+"   ENERGIA RESTANTE:  "+estado.getEnergiaDisponible());
+			}
+			if(estado.getEnergiaDisponible() > estado.getEnergiaInicial()*1.25) {
+				estado.setPoder1Disponible(true);
+			}
+			else if(estado.getEnergiaDisponible() > estado.getEnergiaInicial()*1.75) {
+				estado.setPoder2Disponible(true);
+			}
+			else if(estado.getEnergiaDisponible() > estado.getEnergiaInicial()*2.2) {
+				estado.setPoder3Disponible(true);
+			}
 		}
 		return estado;
 	}
@@ -51,28 +57,30 @@ public class pelear extends SearchAction{
 		// TODO Auto-generated method stub
 		PokemonAgentState estado = (PokemonAgentState) ast;
 		PokemonEnvironmentState ambiente = (PokemonEnvironmentState) est;
-		if(estado.getEnergiaDisponible() > ambiente.getAgentPosition().getOcupante().getEnergia() && !estado.getUbicacionActual().getHayPokebola()) {
-			enemigoGenerico enemigo = estado.getUbicacionActual().getOcupante();
-			estado.setEnergiaDisponible(estado.getEnergiaDisponible()+enemigo.getEnergia()*0.2f);
-			ambiente.getAgentPosition().getOcupante().setEnergia(0);
-			estado.getDerrotados().add(estado.getUbicacionActual().getOcupante());
-			ambiente.getAgentPosition().getOcupante().setDefeated(true);
-		}
-		else if(this.utilizarHabilidades(estado) && !estado.getUbicacionActual().getHayPokebola()) { //funcion que evalua y usa habilidades
-			enemigoGenerico enemigo = estado.getUbicacionActual().getOcupante();
-			estado.setEnergiaDisponible(estado.getEnergiaDisponible()+enemigo.getEnergia()*0.2f);
-			ambiente.getAgentPosition().getOcupante().setEnergia(0);
-			estado.getDerrotados().add(estado.getUbicacionActual().getOcupante());
-			ambiente.getAgentPosition().getOcupante().setDefeated(true);
-		}
-		if(estado.getEnergiaDisponible() > estado.getEnergiaInicial()*1.25) {
-			estado.setPoder1Disponible(true);
-		}
-		else if(estado.getEnergiaDisponible() > estado.getEnergiaInicial()*1.75) {
-			estado.setPoder2Disponible(true);
-		}
-		else if(estado.getEnergiaDisponible() > estado.getEnergiaInicial()*2.2) {
-			estado.setPoder3Disponible(true);
+		if(estado.getUbicacionActual().getOcupante()!=null) {
+			if(estado.getEnergiaDisponible() > ambiente.getAgentPosition().getOcupante().getEnergia() && !estado.getUbicacionActual().getOcupante().getDefeated()) {
+				enemigoGenerico enemigo = estado.getUbicacionActual().getOcupante();
+				estado.setEnergiaDisponible(estado.getEnergiaDisponible()+enemigo.getEnergia()*0.2f);
+				ambiente.getAgentPosition().getOcupante().setEnergia(0);
+				estado.getDerrotados().add(estado.getUbicacionActual().getOcupante());
+				ambiente.getAgentPosition().getOcupante().setDefeated(true);
+			}
+			else if(this.utilizarHabilidades(estado) && !estado.getUbicacionActual().getHayPokebola()) { //funcion que evalua y usa habilidades
+				enemigoGenerico enemigo = estado.getUbicacionActual().getOcupante();
+				estado.setEnergiaDisponible(estado.getEnergiaDisponible()+enemigo.getEnergia()*0.2f);
+				ambiente.getAgentPosition().getOcupante().setEnergia(0);
+				estado.getDerrotados().add(estado.getUbicacionActual().getOcupante());
+				ambiente.getAgentPosition().getOcupante().setDefeated(true);
+			}
+			if(estado.getEnergiaDisponible() > estado.getEnergiaInicial()*1.25) {
+				estado.setPoder1Disponible(true);
+			}
+			else if(estado.getEnergiaDisponible() > estado.getEnergiaInicial()*1.75) {
+				estado.setPoder2Disponible(true);
+			}
+			else if(estado.getEnergiaDisponible() > estado.getEnergiaInicial()*2.2) {
+				estado.setPoder3Disponible(true);
+			}
 		}
 		return ambiente;
 	}

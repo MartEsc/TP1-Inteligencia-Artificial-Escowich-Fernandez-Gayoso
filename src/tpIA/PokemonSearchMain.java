@@ -10,6 +10,7 @@ public class PokemonSearchMain {
 		
 		pokemonEnvironment.getEnvironmentState().initState();
 		System.out.println(pokemonEnvironment.toString());
-		//pokemonSimulator.start();
+		((PokemonAgentState) pokemonAgent.getAgentState()).initUnState(pokemonEnvironment.getEnvironmentState());
+		pokemonSimulator.start();
 	}
 }
