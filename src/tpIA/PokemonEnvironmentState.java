@@ -218,4 +218,28 @@ public class PokemonEnvironmentState extends EnvironmentState {
 		return listaNodos.get(nodoActualAgente-1).getNodosVecinos();
 	}
 
+	public ArrayList<Nodo> getListaNodos() {
+		return listaNodos;
+	}
+
+	public void setListaNodos(ArrayList<Nodo> listaNodos) {
+		this.listaNodos = listaNodos;
+	}
+
+	public ArrayList<enemigoGenerico> getListaEnemigos() {
+		return listaEnemigos;
+	}
+
+	public void setListaEnemigos(ArrayList<enemigoGenerico> listaEnemigos) {
+		this.listaEnemigos = listaEnemigos;
+	}
+
+	public int getNodoActualAgente() {
+		return nodoActualAgente;
+	}
+
+	public void setNodoActualAgente(int nodoActualAgente) {
+		this.nodoActualAgente = nodoActualAgente;
+	}
+
 }

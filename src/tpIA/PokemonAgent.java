@@ -6,6 +6,10 @@ import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgent;
 import frsf.cidisi.faia.solver.search.Search;
+import tpIA.acciones.huir;
+import tpIA.acciones.moverANodoAdyacente;
+import tpIA.acciones.pelear;
+import tpIA.acciones.recargarEnergiaPokebola;
 import frsf.cidisi.faia.agent.search.Problem;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -19,12 +23,9 @@ public class PokemonAgent extends SearchBasedAgent {
 		this.setAgentState(estado);
 		//operadores
 		Vector<SearchAction> operadores = new Vector<SearchAction>();
-		operadores.addElement(new moverANodoAdycente());
+		operadores.addElement(new moverANodoAdyacente());
 		operadores.addElement(new pelear());
 		operadores.addElement(new huir());
-		operadores.addElement(new usarPoderUno());
-		operadores.addElement(new usarPoderDos());
-		operadores.addElement(new usarPoderTres());
 		operadores.addElement(new recargarEnergiaPokebola());;
 		Problem problem = new Problem(objetivo, estado, operadores);
         this.setProblem(problem);
