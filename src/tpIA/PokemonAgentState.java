@@ -13,6 +13,7 @@ public class PokemonAgentState extends SearchBasedAgentState{
 	private int identificador;
 	private float energiaDisponible;
 	private float energiaInicial;
+	private float energiaGanada;
 	private int contadorPoder1;
 	private int contadorPoder2;
 	private int contadorPoder3;
@@ -23,6 +24,7 @@ public class PokemonAgentState extends SearchBasedAgentState{
 	private ArrayList<enemigoGenerico> derrotados;
 	private boolean noPelea;
 	private Mapa mapaMundiHeroe;
+	private boolean bossDerrotado;
 	
 	
 	
@@ -42,12 +44,14 @@ public class PokemonAgentState extends SearchBasedAgentState{
 		nuevoEstadoPokemon.setIdentificador(this.getIdentificador());
 		nuevoEstadoPokemon.setEnergiaDisponible(this.getEnergiaDisponible());
 		nuevoEstadoPokemon.setEnergiaInicial(this.getEnergiaInicial());
+		nuevoEstadoPokemon.setEnergiaGanada(this.getEnergiaGanada());
 		nuevoEstadoPokemon.setContadorPoder1(this.getContadorPoder1());
 		nuevoEstadoPokemon.setContadorPoder2(this.getContadorPoder2());
 		nuevoEstadoPokemon.setContadorPoder3(this.getContadorPoder3());
 		nuevoEstadoPokemon.setPoder1Disponible(this.isPoder1Disponible());
 		nuevoEstadoPokemon.setPoder2Disponible(this.isPoder2Disponible());
 		nuevoEstadoPokemon.setPoder3Disponible(this.isPoder3Disponible());
+		nuevoEstadoPokemon.setBossDerrotado(this.isBossDerrotado());
 		ArrayList<enemigoGenerico> newDerrotados = new ArrayList<enemigoGenerico>();
 		for(enemigoGenerico e : this.getDerrotados()) {
 			newDerrotados.add((enemigoGenerico) e.clone());
@@ -55,8 +59,8 @@ public class PokemonAgentState extends SearchBasedAgentState{
 		nuevoEstadoPokemon.setDerrotados(newDerrotados);
 		Nodo newUbicacion = this.getUbicacionActual().clone();
 		nuevoEstadoPokemon.setUbicacionActual(newUbicacion);
-		Mapa newMapa = this.getMapaMundiHeroe().clone();
-		nuevoEstadoPokemon.setMapaMundiHeroe(newMapa);
+		//Mapa newMapa = this.getMapaMundiHeroe().clone();
+		//nuevoEstadoPokemon.setMapaMundiHeroe(newMapa);
 		
 		return nuevoEstadoPokemon;
 	}
@@ -64,31 +68,41 @@ public class PokemonAgentState extends SearchBasedAgentState{
 	@Override
 	public void updateState(Perception p) {
 		// TODO Auto-generated method stub
-		
+		PokemonPerception percepcion = (PokemonPerception) p;
+		this.setUbicacionActual(percepcion.nodoActualAgente);
+		this.getUbicacionActual().setNodosVecinos(percepcion.nodosVecinos);
+		//System.out.println("Entro a updateState Pokemon Agent State");
+		energiaDisponible = percepcion.getEnergiaActual();
+		this.mapaMundiHeroe = percepcion.mapaHeroe;
 	}
 
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return null;
+		String str = ""; 
+        str = str + "\nPosicion = "+ this.getUbicacionActual()  +"\n"; 
+        str = str + "Energia = " + this.getEnergiaDisponible() + "\n"; 
+        return str;
+
 	}
-	
-	public void initUnState(PokemonEnvironmentState ambiente) {
+	@Override
+	public void initState() {
 		// TODO Auto-generated method stub
 		identificador=1;
 		//energiaInicial= new Random().nextInt(10, 20);
 		energiaInicial= 30;
 		energiaDisponible = energiaInicial;
+		energiaGanada = 0;
 		contadorPoder1=0;
 		contadorPoder2=0;
 		contadorPoder3=0;
 		poder1Disponible=false;
 		poder2Disponible=false;
 		poder3Disponible=false;
-		ubicacionActual = ambiente.getListaNodos().get(0);
+		//ubicacionActual = ambiente.getListaNodos().get(0);
 		derrotados= new ArrayList<enemigoGenerico>();
 		noPelea=false;
-		mapaMundiHeroe = new Mapa(ambiente.getListaNodos(), ambiente.getMapaEnemigos(), ambiente.getContadorSatelite());
+		//mapaMundiHeroe = new Mapa(ambiente.getListaNodos(), ambiente.getMapaEnemigos(), ambiente.getContadorSatelite());
 	}
 
 	public int getIdentificador() {
@@ -196,10 +210,22 @@ public class PokemonAgentState extends SearchBasedAgentState{
 		this.energiaInicial = energiaInicial;
 	}
 
-	@Override
-	public void initState() {
-		// TODO Auto-generated method stub
-		
+	public float getEnergiaGanada() {
+		return energiaGanada;
 	}
+
+	public void setEnergiaGanada(float energiaGanada) {
+		this.energiaGanada = energiaGanada;
+	}
+
+
+	public boolean isBossDerrotado() {
+		return bossDerrotado;
+	}
+
+	public void setBossDerrotado(boolean bossDerrotado) {
+		this.bossDerrotado = bossDerrotado;
+	}
+	
 	
 }

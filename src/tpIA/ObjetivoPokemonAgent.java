@@ -9,17 +9,8 @@ public class ObjetivoPokemonAgent extends GoalTest{
 	public boolean isGoalState(AgentState agentState) {
 		// TODO Auto-generated method stub
 		PokemonAgentState estado = (PokemonAgentState) agentState;
-		
-		if(estado.getDerrotados().size()==23 ) {
-			for (enemigoGenerico e : estado.getDerrotados()){
-				if(e.getIdentificador()==26) {
-					return true;
-				}
-			}
-			return false;
-		}
+		if(estado.isBossDerrotado()) return true;
 		else
-			return false;
+		return false;
 	}
-	
 }

@@ -14,18 +14,24 @@ public class huir extends SearchAction{
 		// TODO Auto-generated method stub
 		PokemonAgentState estado = (PokemonAgentState) s;
 		if(estado.getUbicacionActual().getOcupante()!=null) {
-			if(estado.getEnergiaDisponible() < estado.getUbicacionActual().getOcupante().getEnergia()
-					&& !utilizarHabilidades(estado)) {
-				estado.setEnergiaDisponible(estado.getEnergiaDisponible()-(estado.getEnergiaDisponible()/4));
-				estado.setNoPelea(true);
+			System.out.println("Energia actual antes de querer huir: "+ estado.getEnergiaDisponible());
+			System.out.println("Es necesario huir? "+ !estado.getUbicacionActual().getOcupante().getDefeated());
+			if(!estado.getUbicacionActual().getOcupante().getDefeated()){
+				if((estado.getEnergiaDisponible() < estado.getUbicacionActual().getOcupante().getEnergia()
+						&& utilizarHabilidades(estado)) || !estado.getUbicacionActual().getHayPokebola() ){
+					estado.setEnergiaDisponible(estado.getEnergiaDisponible()-(estado.getEnergiaDisponible()/4));
+					System.out.println("Energia despues de huir"+ estado.getEnergiaDisponible());
+					estado.setNoPelea(true);
+					return estado;
+				}
 			}
 		}
-		return estado;
+		return null;
 	}
 
 	@Override
 	public Double getCost() {
-		return null;
+		return 2.0;
 	}
 
 	@Override
@@ -34,14 +40,18 @@ public class huir extends SearchAction{
 		PokemonAgentState estado = (PokemonAgentState) ast;
 		PokemonEnvironmentState ambiente = (PokemonEnvironmentState) est;
 		if(estado.getUbicacionActual().getOcupante()!=null) {
-			if(estado.getEnergiaDisponible() < ambiente.getAgentPosition().getOcupante().getEnergia()
-					&& !ambiente.getAgentPosition().getHayPokebola() && !utilizarHabilidades(estado)) {
-				estado.setEnergiaDisponible(estado.getEnergiaDisponible()-(estado.getEnergiaDisponible()/4));
-				estado.setNoPelea(true);
+			if(!estado.getUbicacionActual().getOcupante().getDefeated()){
+				if((estado.getEnergiaDisponible() < ambiente.getAgentPosition().getOcupante().getEnergia()
+						&& utilizarHabilidades(estado)) || !ambiente.getAgentPosition().getHayPokebola()){
+					estado.setEnergiaDisponible(estado.getEnergiaDisponible()-(estado.getEnergiaDisponible()/4));
+					ambiente.setEnergiaPokemon(ambiente.getEnergiaPokemon()-ambiente.getEnergiaPokemon()/4);
+					estado.setNoPelea(true);
+					return ambiente;
+				}
 			}
 		}
 		System.out.println(this.toString());
-		return ambiente;
+		return null;
 	}
 
 	@Override
@@ -53,6 +63,7 @@ public class huir extends SearchAction{
 		enemigoGenerico enemigo = estado.getUbicacionActual().getOcupante();
 		if(estado.isPoder1Disponible() && estado.getContadorPoder1() > 3){
 			if(estado.getEnergiaDisponible()*1.2 > enemigo.getEnergia()) {
+				System.out.println("Uso poder 1");
 				estado.setEnergiaDisponible(estado.getEnergiaDisponible()*1.2f);
 				estado.setContadorPoder1(0);
 				estado.setPoder1Disponible(false);
@@ -61,6 +72,7 @@ public class huir extends SearchAction{
 		}
 		if(estado.isPoder2Disponible() && estado.getContadorPoder2() > 3){
 			if(estado.getEnergiaDisponible()*1.3 > enemigo.getEnergia()) {
+				System.out.println("Uso poder 2");
 				estado.setEnergiaDisponible(estado.getEnergiaDisponible()*1.3f);
 				estado.setContadorPoder2(0);
 				estado.setPoder2Disponible(false);
@@ -69,6 +81,7 @@ public class huir extends SearchAction{
 		}
 		if(estado.isPoder3Disponible() && estado.getContadorPoder3() > 3){
 			if(estado.getEnergiaDisponible()*1.5 > enemigo.getEnergia()) {
+				System.out.println("Uso poder 3");
 				estado.setEnergiaDisponible(estado.getEnergiaDisponible()*1.5f);
 				estado.setContadorPoder3(0);
 				estado.setPoder3Disponible(false);
@@ -78,6 +91,7 @@ public class huir extends SearchAction{
 		if(estado.isPoder1Disponible() && estado.getContadorPoder1() > 3 && 
 				estado.isPoder2Disponible() && estado.getContadorPoder2() > 3){
 			if(estado.getEnergiaDisponible()*1.5 > enemigo.getEnergia()) {
+				System.out.println("Uso poder 1 y 2");
 				estado.setEnergiaDisponible(estado.getEnergiaDisponible()*1.5f);
 				estado.setContadorPoder1(0);
 				estado.setPoder1Disponible(false);
@@ -89,6 +103,7 @@ public class huir extends SearchAction{
 		if(estado.isPoder1Disponible() && estado.getContadorPoder1() > 3 && 
 				estado.isPoder3Disponible() && estado.getContadorPoder3() > 3){
 			if(estado.getEnergiaDisponible()*1.7 > enemigo.getEnergia()) {
+				System.out.println("Uso poder 1 y 3");
 				estado.setEnergiaDisponible(estado.getEnergiaDisponible()*1.7f);
 				estado.setContadorPoder1(0);
 				estado.setPoder1Disponible(false);
@@ -100,6 +115,7 @@ public class huir extends SearchAction{
 		if(estado.isPoder2Disponible() && estado.getContadorPoder2() > 3 && 
 				estado.isPoder3Disponible() && estado.getContadorPoder3() > 3){
 			if(estado.getEnergiaDisponible()*1.8 > enemigo.getEnergia()) {
+				System.out.println("Uso poder 2 y 3");
 				estado.setEnergiaDisponible(estado.getEnergiaDisponible()*1.8f);
 				estado.setContadorPoder3(0);
 				estado.setPoder3Disponible(false);
@@ -112,6 +128,7 @@ public class huir extends SearchAction{
 				estado.isPoder2Disponible() && estado.getContadorPoder2() > 3 &&
 				estado.isPoder3Disponible() && estado.getContadorPoder3() > 3){
 			if(estado.getEnergiaDisponible()*2 > enemigo.getEnergia()) {
+				System.out.println("Uso poder 1, 2 y 3");
 				estado.setEnergiaDisponible(estado.getEnergiaDisponible()*2f);
 				estado.setContadorPoder1(0);
 				estado.setPoder1Disponible(false);

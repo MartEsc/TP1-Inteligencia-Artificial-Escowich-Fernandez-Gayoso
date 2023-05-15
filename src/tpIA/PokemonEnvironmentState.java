@@ -17,7 +17,8 @@ public class PokemonEnvironmentState extends EnvironmentState {
 	ArrayList<Integer> pokebolas;
 	int nodoActualAgente = 1;
 	int contadorSatelite;
-	
+	float energiaPokemon;
+	boolean bossDerrotado;
 	@Override
 	public void initState() {
 		listaNodos = new ArrayList<Nodo>();
@@ -49,13 +50,15 @@ public class PokemonEnvironmentState extends EnvironmentState {
 		listaNodos.add(new Nodo(25));
 		listaNodos.add(new Nodo(26));
 		listaNodos.add(new Nodo(27));
+		//System.out.println("Energia en environment state");
 		listaNodos.add(new Nodo(28));
-		
+		energiaPokemon=30f;
+		bossDerrotado=false;
 		generarEnemigos();
 		pokebolas = new ArrayList<Integer>(5);
 		for(int i=0;i<5;i++) {
 			int newInt = new Random().nextInt(1,30);
-			if(!pokebolas.contains(newInt)) {
+			if(!pokebolas.contains(newInt) && newInt != 26) {
 				pokebolas.add(newInt);
 			}
 			else {
@@ -63,20 +66,18 @@ public class PokemonEnvironmentState extends EnvironmentState {
 			}
 			
 		}
-		System.out.println(pokebolas.toString());
+		//System.out.println(pokebolas.toString());
 		int iteradorEnemigos = 0;
 		for(int i=0;i<29;i++) {
 			if(pokebolas.contains((Integer) i)) {
 				listaNodos.get(i).setHayPokebola(true);
-				listaNodos.get(i).setOcupante(new enemigoGenerico(i+10000, 1,true));
-				listaNodos.get(i).getOcupante().setUbicacionActualEnemigo(listaNodos.get(i));
 			}
 			else {
-				System.out.println("Iterador enemigos "+iteradorEnemigos+"\n i: "+i);
+				//System.out.println("Iterador enemigos "+iteradorEnemigos+"\n i: "+i);
 				listaNodos.get(i).setOcupante(listaEnemigos.get(iteradorEnemigos));
 				
 				listaEnemigos.get(iteradorEnemigos).setUbicacionActualEnemigo(listaNodos.get(i));
-				System.out.println("Nodo "+i+"  "+listaNodos.get(i).getOcupante()+"\n");
+				//System.out.println("Nodo "+i+"  "+listaNodos.get(i).getOcupante()+"\n");
 				mapaEnemigos.put(listaNodos.get(i),listaEnemigos.get(iteradorEnemigos));
 				iteradorEnemigos++;
 			}
@@ -100,6 +101,7 @@ public class PokemonEnvironmentState extends EnvironmentState {
 	}
 	
 	public void generarEnemigos() {
+		listaEnemigos.clear();
 		for(int i=0;i<25;i++) {
 			listaEnemigos.add(new enemigoGenerico(i,(Math.abs(new Random().nextInt()%20)+1)));
 			listaEnemigos.get(i).setUbicacionActualEnemigo(new Nodo(-1));
@@ -258,6 +260,30 @@ public class PokemonEnvironmentState extends EnvironmentState {
 
 	public void setContadorSatelite(int contadorSatelite) {
 		this.contadorSatelite = contadorSatelite;
+	}
+
+	public ArrayList<Integer> getPokebolas() {
+		return pokebolas;
+	}
+
+	public void setPokebolas(ArrayList<Integer> pokebolas) {
+		this.pokebolas = pokebolas;
+	}
+
+	public float getEnergiaPokemon() {
+		return energiaPokemon;
+	}
+
+	public void setEnergiaPokemon(float energiaPokemon) {
+		this.energiaPokemon = energiaPokemon;
+	}
+
+	public boolean isBossDerrotado() {
+		return bossDerrotado;
+	}
+
+	public void setBossDerrotado(boolean bossDerrotado) {
+		this.bossDerrotado = bossDerrotado;
 	}
 	
 

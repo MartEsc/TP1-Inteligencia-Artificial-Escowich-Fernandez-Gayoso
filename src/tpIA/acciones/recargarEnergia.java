@@ -6,26 +6,21 @@ import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
-import tpIA.Nodo;
 import tpIA.PokemonAgentState;
 import tpIA.PokemonEnvironmentState;
 
-public class recargarEnergiaPokebola extends SearchAction {
+public class recargarEnergia extends SearchAction{
 	Integer energiaPokebola = new Random().nextInt(5, 10);
-	
 	@Override
 	public SearchBasedAgentState execute(SearchBasedAgentState s) {
 		// TODO Auto-generated method stub
 		PokemonAgentState estado = (PokemonAgentState) s;
-		System.out.println("a: "+ estado.getEnergiaDisponible());
 		if(estado.getUbicacionActual().getHayPokebola() && !estado.getUbicacionActual().isPokebolaTomada()) {
-			System.out.println("ENTRE Y SE DA QUE "+ estado.getUbicacionActual().getHayPokebola());
-			System.out.println("energia extra:" + energiaPokebola);
-			estado.setEnergiaDisponible(estado.getEnergiaDisponible() + energiaPokebola);
-			estado.setEnergiaGanada(estado.getEnergiaGanada() + energiaPokebola);
+			//System.out.println("Recargando energia...");
+			estado.setEnergiaDisponible(estado.getEnergiaDisponible()+energiaPokebola);
+			estado.setEnergiaGanada(estado.getEnergiaGanada()+energiaPokebola);
 			estado.getUbicacionActual().setPokebolaTomada(true);
-			System.out.println("energia total dps de recarga: "+ estado.getEnergiaDisponible());
-			System.out.println("RECARGANDO ENERGIA EN: " + estado.getUbicacionActual());
+			//estado.setBossDerrotado(true);
 			return estado;
 		}
 		return null;
@@ -34,7 +29,7 @@ public class recargarEnergiaPokebola extends SearchAction {
 	@Override
 	public Double getCost() {
 		// TODO Auto-generated method stub
-		return 1.0;
+		return null;
 	}
 
 	@Override
@@ -42,12 +37,14 @@ public class recargarEnergiaPokebola extends SearchAction {
 		// TODO Auto-generated method stub
 		PokemonAgentState estado = (PokemonAgentState) ast;
 		PokemonEnvironmentState ambiente = (PokemonEnvironmentState) est;
-		if(estado.getUbicacionActual().getHayPokebola() && !estado.getUbicacionActual().isPokebolaTomada()) {
-			estado.setEnergiaDisponible(estado.getEnergiaDisponible() + energiaPokebola);
-			estado.setEnergiaGanada(estado.getEnergiaGanada() + energiaPokebola);
-			ambiente.setEnergiaPokemon(ambiente.getEnergiaPokemon()+ energiaPokebola);
+		if(ambiente.getAgentPosition().getHayPokebola() && !ambiente.getAgentPosition().isPokebolaTomada()) {
+			estado.setEnergiaDisponible(estado.getEnergiaDisponible()+energiaPokebola);
+			estado.setEnergiaGanada(estado.getEnergiaGanada()+energiaPokebola);
+			estado.getUbicacionActual().setPokebolaTomada(true);
+			ambiente.setEnergiaPokemon(ambiente.getEnergiaPokemon()+energiaPokebola);
 			ambiente.getAgentPosition().setPokebolaTomada(true);
-			System.out.println("ME MUEVO A " + estado.getUbicacionActual());
+			//estado.setBossDerrotado(false);
+			//ambiente.setBossDerrotado(false);
 			return ambiente;
 		}
 		return null;
@@ -55,8 +52,8 @@ public class recargarEnergiaPokebola extends SearchAction {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return "Recargando energia con Pokebola";
+		// TODO Auto-generated method stub 
+		return "recargando energia";
 	}
 
 }
