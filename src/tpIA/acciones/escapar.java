@@ -1,5 +1,7 @@
 package tpIA.acciones;
 
+import java.io.IOException;
+
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
@@ -7,6 +9,7 @@ import frsf.cidisi.faia.state.EnvironmentState;
 import tpIA.PokemonAgentState;
 import tpIA.PokemonEnvironmentState;
 import tpIA.enemigoGenerico;
+import java.io.FileWriter;   
 
 public class escapar extends SearchAction{
 	float vida= 0f;
@@ -22,6 +25,7 @@ public class escapar extends SearchAction{
 				vida = estado.getEnergiaDisponible();
 				estado.setNoPelea(true);
 				//estado.setBossDerrotado(true);
+				logAction();
 				return estado;
 			}
 		}
@@ -49,17 +53,30 @@ public class escapar extends SearchAction{
 				ambiente.setEnergiaPokemon(ambiente.getEnergiaPokemon()-estado.getEnergiaDisponible()/4);
 				//estado.setBossDerrotado(false);
 				//ambiente.setBossDerrotado(false);
+				logAction();
 				return ambiente;
 			}
 		}
 		return null;
 	}
-
+	
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
 		String str ="escapando " + vida;
 		return str;
+	}
+	
+	public void logAction() {
+		try {
+		      FileWriter myWriter = new FileWriter("logAcciones.txt",true);
+		      myWriter.write(this.toString()+"\n");
+		      myWriter.close();
+		      System.out.println("Successfully wrote to the file.");
+		    } catch (IOException e) {
+		      System.out.println("An error occurred.");
+		      e.printStackTrace();
+		    }
 	}
 
 }

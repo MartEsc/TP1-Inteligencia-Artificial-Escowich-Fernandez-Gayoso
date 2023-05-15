@@ -1,5 +1,8 @@
 package tpIA.acciones;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
@@ -11,7 +14,7 @@ import tpIA.PokemonEnvironmentState;
 public class moverANodoN extends SearchAction{
 
 	private Integer nuevaUbicacion;
-	
+	private Integer ubicacionVieja;
 	public moverANodoN(Integer nuevaUbicacion) {
 		super();
 		this.nuevaUbicacion = nuevaUbicacion;
@@ -23,7 +26,7 @@ public class moverANodoN extends SearchAction{
 		PokemonAgentState estado = (PokemonAgentState) s;
 		boolean esVecino = false;
 		Nodo nuevoNodo = null;
-		
+		ubicacionVieja = estado.getUbicacionActual().getIdentificador();
 		//System.out.println("MIS VECINOS SON "+estado.getUbicacionActual().getNodosVecinos());
 		for(Nodo nodo : estado.getUbicacionActual().getNodosVecinos()) {
 			if(nodo.getIdentificador()==this.nuevaUbicacion){
@@ -39,6 +42,7 @@ public class moverANodoN extends SearchAction{
 				estado.setNoPelea(false);
 			//	estado.setBossDerrotado(true);
 				//System.out.println("ME MOVI A " + estado.getUbicacionActual());
+				logAction("de " + ubicacionVieja.toString()+" a "+ estado.getUbicacionActual().getIdentificador());
 				return estado;
 			}
 		}
@@ -56,6 +60,7 @@ public class moverANodoN extends SearchAction{
 		
 		PokemonAgentState estado = (PokemonAgentState) ast;
 		PokemonEnvironmentState ambiente = (PokemonEnvironmentState) est;
+		ubicacionVieja = estado.getUbicacionActual().getIdentificador();
 		boolean esVecino = false;
 		Nodo nuevoNodo = null;
 		for(Nodo nodo : estado.getUbicacionActual().getNodosVecinos()) {
@@ -72,6 +77,7 @@ public class moverANodoN extends SearchAction{
 			//ambiente.setBossDerrotado(false);
 			ambiente.setNodoActualAgente(nuevoNodo.getIdentificador());		
 			//System.out.println("ME MUEVO A " + nuevoNodo.getIdentificador());
+			logAction("Desde " + ubicacionVieja.toString()+" hacia "+ estado.getUbicacionActual().getIdentificador());
 			return ambiente;
 		}
 		return null;
@@ -79,8 +85,18 @@ public class moverANodoN extends SearchAction{
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
+		
 		return "Ir al siguiente nodo";
 	}
-	
+	public void logAction(String string) {
+		try {
+		      FileWriter myWriter = new FileWriter("logAcciones.txt",true);
+		      myWriter.write(string+"\n");
+		      myWriter.close();
+		      System.out.println("Successfully wrote to the file.");
+		    } catch (IOException e) {
+		      System.out.println("An error occurred.");
+		      e.printStackTrace();
+		    }
+	}
 }
