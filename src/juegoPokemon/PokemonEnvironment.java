@@ -41,7 +41,6 @@ public class PokemonEnvironment extends Environment{
 						Random r = new Random(); 
 						if(s != -1) { //si pudo mover seteo entre 1 y 3 la cant de ciclos y lo saco de donde estaba
 							n.getOcupante().setCiclosParaMoverse(r.nextInt(3)+1);//seteo un random entre 1 y 3
-							n.setOcupante(new EnemigoGenerico(-1, true));
 						}
 					}
 				}
@@ -58,7 +57,7 @@ public class PokemonEnvironment extends Environment{
 				Random r = new Random();
 				ArrayList<Nodo> vecinosSinPokemones = new ArrayList<>();
 				for(Nodo vecino : vecinos) {
-					if(vecino.getOcupante().isDefeated() && !vecino.isHayPokebola())
+					if(nodo.getOcupante().isDefeated() && !vecino.isHayPokebola())
 						vecinosSinPokemones.add(vecino);
 					if(vecinosSinPokemones.size() == 0) {
 						respuesta= -1; //si no se puede mover a ninguno, salgo sin hacer nada

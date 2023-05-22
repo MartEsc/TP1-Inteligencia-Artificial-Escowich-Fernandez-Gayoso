@@ -23,7 +23,7 @@ public class pelear extends SearchAction{
 			estado.setEnergiaDisponible(estado.getEnergiaDisponible()-ubicacionActual.getOcupante().getEnergia()+(ubicacionActual.getOcupante().getEnergia()*0.2f));
 			estado.setEnergiaGanada(estado. getEnergiaGanada()+ ubicacionActual.getOcupante().getEnergia()*0.2f);
 			ubicacionActual.getOcupante().setDefeated(true);
-			
+			ubicacionActual.getOcupante().setIdentificador(-1);
 			if(estado.getEnergiaGanada() >= estado.getEnergiaInicial()*0.25f && !estado.isPoder1Disponible()) {
 				//System.out.println("Poder 1 Desbloquedo");
 				estado.setPoder1Disponible(true);
@@ -63,6 +63,7 @@ public class pelear extends SearchAction{
 			estado.setEnergiaDisponible(estado.getEnergiaDisponible()-ubicacionActualAgente.getOcupante().getEnergia()+(ubicacionActualAgente.getOcupante().getEnergia()*0.2f));
 			estado.setEnergiaGanada(estado. getEnergiaGanada()+ ubicacionActualAgente.getOcupante().getEnergia()*0.2f);
 			ubicacionActualAgente.getOcupante().setDefeated(true);
+			ubicacionActualAgente.getOcupante().setIdentificador(-1);
 			
 			if(estado.getEnergiaGanada() >= estado.getEnergiaInicial()*0.25f && !estado.isPoder1Disponible()) {
 				estado.setPoder1Disponible(true);
@@ -74,6 +75,8 @@ public class pelear extends SearchAction{
 				estado.setPoder3Disponible(true);
 			}
 			ubicacionActualAmbiente.getOcupante().setDefeated(true);
+			ubicacionActualAmbiente.getOcupante().setIdentificador(-1);
+
 			return ambiente;
 		}
 		return null;

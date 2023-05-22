@@ -13,7 +13,7 @@ public class usarPoder3 extends SearchAction{
 		// TODO Auto-generated method stub
 		PokemonAgentState estado = (PokemonAgentState) s;
 		if(estado.isPoder3Disponible() && estado.getContadorPoder3()>=3) {
-			System.out.println("Poder 3 Desbloqueado...");
+			//System.out.println("Poder 3 Desbloqueado...");
 			estado.setEnergiaDisponible(estado.getEnergiaDisponible()*1.5f);
 			estado.setContadorPoder3(0);
 			return estado;

@@ -164,7 +164,7 @@ public class PokemonEnvironmentState extends EnvironmentState{
 		generarEnemigos();
 		pokebolas = new ArrayList<Integer>(3);
 		int iteradorEnemigos = 0;
-		for(int i=0;i<7;i++) { 
+		for(int i=0;i<5;i++) { 
 			int newInt = new Random().nextInt(0,29);
 			if(!pokebolas.contains(newInt) && newInt != 25) { pokebolas.add(newInt); }
 			else { i--; }
