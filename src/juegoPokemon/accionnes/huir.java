@@ -18,7 +18,7 @@ public class huir extends SearchAction{
 			EnemigoGenerico enemigo = estado.getUbicacionActual().getOcupante();
 			if(estado.getEnergiaDisponible() < enemigo.getEnergia() && !enemigo.isDefeated()) {
 				//System.out.println("Enemigo fuerte, escapando...");
-				estado.setEnergiaDisponible(estado.getEnergiaDisponible()-estado.getEnergiaDisponible()/4);
+				estado.setEnergiaDisponible(estado.getEnergiaDisponible()-enemigo.getEnergia()/4);
 				vida = estado.getEnergiaDisponible();
 				estado.setNoPelea(true);
 				//estado.setBossDerrotado(true);
