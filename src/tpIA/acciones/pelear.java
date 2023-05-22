@@ -46,7 +46,7 @@ public class pelear extends SearchAction{
 				estado.getUbicacionActual().getOcupante().setEnergia(0);
 				estado.getDerrotados().add(estado.getUbicacionActual().getOcupante());
 				estado.getUbicacionActual().getOcupante().setDefeated(true);
-				if(enemigo.getUbicacionActualEnemigo().getIdentificador()==26) {
+				if(enemigo.getUbicacionActualEnemigo()==26) {
 					estado.setBossDerrotado(true);
 				}else estado.setBossDerrotado(false);
 				//System.out.println("DERROTADO ENEMIGO EN "+estado.getUbicacionActual()+"   ENERGIA RESTANTE:  "+estado.getEnergiaDisponible());
@@ -61,7 +61,7 @@ public class pelear extends SearchAction{
 				estado.getUbicacionActual().getOcupante().setEnergia(0);
 				estado.getDerrotados().add(estado.getUbicacionActual().getOcupante());
 				estado.getUbicacionActual().getOcupante().setDefeated(true);
-				if(enemigo.getUbicacionActualEnemigo().getIdentificador()==26) {
+				if(enemigo.getUbicacionActualEnemigo()==26) {
 					estado.setBossDerrotado(true);
 				}else estado.setBossDerrotado(false);
 	
@@ -105,10 +105,10 @@ public class pelear extends SearchAction{
 				ambiente.setEnergiaPokemon(ambiente.getEnergiaPokemon()-enemigo.getEnergia()+enemigo.getEnergia()*0.2f);
 				estado.getDerrotados().add(estado.getUbicacionActual().getOcupante());
 				ambiente.getAgentPosition().getOcupante().setDefeated(true);
-				if(enemigo.getUbicacionActualEnemigo().getIdentificador()==26) {
+				if(enemigo.getUbicacionActualEnemigo()==26) {
 					estado.setBossDerrotado(true);
 				}else estado.setBossDerrotado(false);
-				if(enemigo.getUbicacionActualEnemigo().getIdentificador()==26) {
+				if(enemigo.getUbicacionActualEnemigo()==26) {
 					ambiente.setBossDerrotado(true);
 				}else ambiente.setBossDerrotado(false);	
 				return ambiente;
@@ -121,10 +121,10 @@ public class pelear extends SearchAction{
 				ambiente.setEnergiaPokemon(ambiente.getEnergiaPokemon()-enemigo.getEnergia()+enemigo.getEnergia()*0.2f);
 				estado.getDerrotados().add(estado.getUbicacionActual().getOcupante());
 				ambiente.getAgentPosition().getOcupante().setDefeated(true);
-				if(enemigo.getUbicacionActualEnemigo().getIdentificador()==26) {
+				if(enemigo.getUbicacionActualEnemigo()==26) {
 					estado.setBossDerrotado(true);
 				}else estado.setBossDerrotado(false);
-				if(enemigo.getUbicacionActualEnemigo().getIdentificador()==26) {
+				if(enemigo.getUbicacionActualEnemigo()==26) {
 					ambiente.setBossDerrotado(true);
 				}else ambiente.setBossDerrotado(false);
 				return ambiente;

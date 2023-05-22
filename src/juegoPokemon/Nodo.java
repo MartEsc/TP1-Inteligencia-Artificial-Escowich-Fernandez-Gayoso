@@ -1,14 +1,23 @@
-package tpIA;
+package juegoPokemon;
 
 import java.util.ArrayList;
+
+
 
 public class Nodo {
 	
 	int identificador;
-	enemigoGenerico ocupante;
+	EnemigoGenerico ocupante;
 	boolean hayPokebola;
 	boolean pokebolaTomada;
 	ArrayList<Nodo> nodosVecinos;
+	
+	
+	public Nodo() {
+		super();
+	}
+	
+	
 	public Nodo(int identificador) {
 		super();
 		this.identificador = identificador;
@@ -16,13 +25,9 @@ public class Nodo {
 		this.pokebolaTomada=false;
 		this.nodosVecinos = new ArrayList<Nodo>();
 	}
-	
-	public Nodo() {
-		// TODO Auto-generated constructor stub
-	}
 
-	
-	public Nodo(int identificador, enemigoGenerico ocupante, boolean hayPokebola, boolean pokebolaTomada,
+
+	public Nodo(int identificador, EnemigoGenerico ocupante, boolean hayPokebola, boolean pokebolaTomada,
 			ArrayList<Nodo> nodosVecinos) {
 		super();
 		this.identificador = identificador;
@@ -32,60 +37,70 @@ public class Nodo {
 		this.nodosVecinos = nodosVecinos;
 	}
 
-	public Nodo clone(){
-		Nodo newNodo = new Nodo();
-		
-		newNodo.setIdentificador(this.getIdentificador());
-		if(this.getOcupante() != null) {
-			enemigoGenerico newEnemigo = this.getOcupante().clone();
-			newNodo.setOcupante(newEnemigo);
-		}		
-		ArrayList<Nodo> newNodosVecinos = new ArrayList<Nodo>();
-		for(Nodo nodo : this.getNodosVecinos()) {
-			newNodosVecinos.add(nodo);
-		}
-		newNodo.setNodosVecinos(newNodosVecinos);
-		newNodo.setHayPokebola(this.getHayPokebola());
-		newNodo.setPokebolaTomada(this.isPokebolaTomada());
-		
+
+	public Nodo clone() {
+		int newIdentificador = this.getIdentificador();
+		EnemigoGenerico newEnemigo = this.getOcupante().clone();
+		boolean newHayPokebola = this.isHayPokebola();
+		boolean newPokebolaTomada = this.isPokebolaTomada();
+		ArrayList<Nodo> newNodosVecinos = this.getNodosVecinos();
+		Nodo newNodo = new Nodo(newIdentificador, newEnemigo, newHayPokebola, newPokebolaTomada, newNodosVecinos);
 		return newNodo;
 	}
+
+
 	public int getIdentificador() {
 		return identificador;
 	}
+
+
 	public void setIdentificador(int identificador) {
 		this.identificador = identificador;
 	}
-	public enemigoGenerico getOcupante() {
+
+
+	public EnemigoGenerico getOcupante() {
 		return ocupante;
 	}
-	public void setOcupante(enemigoGenerico ocupante) {
+
+
+	public void setOcupante(EnemigoGenerico ocupante) {
 		this.ocupante = ocupante;
 	}
-	public boolean getHayPokebola() {
+
+
+	public boolean isHayPokebola() {
 		return hayPokebola;
 	}
+
+
 	public void setHayPokebola(boolean hayPokebola) {
 		this.hayPokebola = hayPokebola;
 	}
-	public ArrayList<Nodo> getNodosVecinos() {
-		return nodosVecinos;
-	}
-	public void setNodosVecinos(ArrayList<Nodo> nodosVecinos) {
-		this.nodosVecinos = nodosVecinos;
-	}
-	public void addVecino(Nodo nodoVecino) {
-		this.nodosVecinos.add(nodoVecino);
-	}
-	
+
+
 	public boolean isPokebolaTomada() {
 		return pokebolaTomada;
 	}
+
 
 	public void setPokebolaTomada(boolean pokebolaTomada) {
 		this.pokebolaTomada = pokebolaTomada;
 	}
 
+
+	public ArrayList<Nodo> getNodosVecinos() {
+		return nodosVecinos;
+	}
+
+
+	public void setNodosVecinos(ArrayList<Nodo> nodosVecinos) {
+		this.nodosVecinos = nodosVecinos;
+	}
+
+	public void addVecino(Nodo nodoVecino) {
+		this.nodosVecinos.add(nodoVecino);
+	}
 	@Override
 	public String toString() {
 		StringBuffer str = new StringBuffer();
@@ -99,6 +114,5 @@ public class Nodo {
 		}
 		return str.toString();
 	}
-	
 	
 }

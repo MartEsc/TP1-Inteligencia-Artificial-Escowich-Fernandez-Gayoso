@@ -1,21 +1,21 @@
-package tpIA.acciones;
+package juegoPokemon.accionnes;
 
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
-import tpIA.PokemonAgentState;
-import tpIA.PokemonEnvironmentState;
+import juegoPokemon.PokemonAgentState;
+import juegoPokemon.PokemonEnvironmentState;
 
-public class usarPoder1 extends SearchAction{
-
+public class usarPoder3 extends SearchAction{
 	@Override
 	public SearchBasedAgentState execute(SearchBasedAgentState s) {
 		// TODO Auto-generated method stub
 		PokemonAgentState estado = (PokemonAgentState) s;
-		if(estado.isPoder1Disponible()) {
-			System.out.println("Usando poder 1");
-			estado.setEnergiaDisponible(estado.getEnergiaDisponible()*1.2f);
+		if(estado.isPoder3Disponible() && estado.getContadorPoder3()>=3) {
+			System.out.println("Poder 3 Desbloqueado...");
+			estado.setEnergiaDisponible(estado.getEnergiaDisponible()*1.5f);
+			estado.setContadorPoder3(0);
 			return estado;
 		}
 		return null;
@@ -32,9 +32,10 @@ public class usarPoder1 extends SearchAction{
 		// TODO Auto-generated method stub
 		PokemonAgentState estado = (PokemonAgentState) ast;
 		PokemonEnvironmentState ambiente = (PokemonEnvironmentState) est;
-		if(estado.isPoder1Disponible()) {
-			estado.setEnergiaDisponible(estado.getEnergiaDisponible()*1.2f);
-			ambiente.setEnergiaPokemon(ambiente.getEnergiaPokemon()*1.2f);
+		if(estado.isPoder3Disponible() && estado.getContadorPoder3()>=3) {
+			estado.setEnergiaDisponible(estado.getEnergiaDisponible()*1.5f);
+			ambiente.setEnergiaAgente(ambiente.getEnergiaAgente()*1.5f);
+			estado.setContadorPoder3(0);
 			return ambiente;
 		}
 		return null;
@@ -45,5 +46,5 @@ public class usarPoder1 extends SearchAction{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 }
+

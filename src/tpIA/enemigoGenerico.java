@@ -5,7 +5,7 @@ public class enemigoGenerico {
 	
 	int identificador;
 	int energia;
-	Nodo ubicacionActualEnemigo;
+	int ubicacionActualEnemigo;
 	Boolean defeated;
 	
 	
@@ -32,12 +32,10 @@ public class enemigoGenerico {
 
 	public enemigoGenerico clone(){
 		enemigoGenerico newEnemigoGenetico = new enemigoGenerico();
-		
 		newEnemigoGenetico.setIdentificador(this.getIdentificador());
 		newEnemigoGenetico.setEnergia(this.getEnergia());
-		newEnemigoGenetico.setUbicacionActualEnemigo(this.getUbicacionActualEnemigo());;
+		newEnemigoGenetico.setUbicacionActualEnemigo(this.getUbicacionActualEnemigo());
 		newEnemigoGenetico.setDefeated(this.getDefeated());		
-		
 		return newEnemigoGenetico;
 	}
 	
@@ -53,10 +51,10 @@ public class enemigoGenerico {
 	public void setEnergia(int energia) {
 		this.energia = energia;
 	}
-	public Nodo getUbicacionActualEnemigo() {
+	public int getUbicacionActualEnemigo() {
 		return ubicacionActualEnemigo;
 	}
-	public void setUbicacionActualEnemigo(Nodo ubicacionActualEnemigo) {
+	public void setUbicacionActualEnemigo(int ubicacionActualEnemigo) {
 		this.ubicacionActualEnemigo = ubicacionActualEnemigo;
 	}
 	public Boolean getDefeated() {
@@ -76,7 +74,7 @@ public class enemigoGenerico {
 		str.append(this.energia);
 		str.append("  /  ");
 		str.append("Posicion: ");
-		str.append(this.ubicacionActualEnemigo.getIdentificador() + "\n");
+		str.append(this.ubicacionActualEnemigo + "\n");
 		return str.toString();
 	}
 	

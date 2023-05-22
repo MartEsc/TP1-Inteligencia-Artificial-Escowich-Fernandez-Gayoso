@@ -42,7 +42,7 @@ public class moverANodoN extends SearchAction{
 				estado.setNoPelea(false);
 			//	estado.setBossDerrotado(true);
 				//System.out.println("ME MOVI A " + estado.getUbicacionActual());
-				logAction("de " + ubicacionVieja.toString()+" a "+ estado.getUbicacionActual().getIdentificador());
+				//logAction("de " + ubicacionVieja.toString()+" a "+ estado.getUbicacionActual().getIdentificador());
 				return estado;
 			}
 		}
@@ -77,7 +77,7 @@ public class moverANodoN extends SearchAction{
 			//ambiente.setBossDerrotado(false);
 			ambiente.setNodoActualAgente(nuevoNodo.getIdentificador());		
 			//System.out.println("ME MUEVO A " + nuevoNodo.getIdentificador());
-			logAction("Desde " + ubicacionVieja.toString()+" hacia "+ estado.getUbicacionActual().getIdentificador());
+			//logAction("Desde " + ubicacionVieja.toString()+" hacia "+ estado.getUbicacionActual().getIdentificador());
 			return ambiente;
 		}
 		return null;

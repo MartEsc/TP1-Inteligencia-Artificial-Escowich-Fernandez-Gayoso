@@ -34,7 +34,12 @@ public class PokemonAgentState extends SearchBasedAgentState{
 		PokemonAgentState estadoComparado = (PokemonAgentState) obj;
 		boolean mismaEnergia = estadoComparado.getEnergiaDisponible()==(this.getEnergiaDisponible());
 		boolean mismaUbicacion = estadoComparado.getUbicacionActual().equals(this.getUbicacionActual());
-		return (mismaEnergia && mismaUbicacion);
+		boolean mismosDerrotados = estadoComparado.getDerrotados().size() == this.getDerrotados().size();
+		boolean sigueSinPelear = (this.noPelea && estadoComparado.isNoPelea());
+		boolean mismoContadorPoder1 = this.getContadorPoder1() == estadoComparado.getContadorPoder1();
+		boolean mismoContadorPoder2 = this.getContadorPoder2() == estadoComparado.getContadorPoder2();
+		boolean mismoContadorPoder3 = this.getContadorPoder3() == estadoComparado.getContadorPoder3();
+		return (mismaEnergia && mismaUbicacion && mismosDerrotados && sigueSinPelear && mismoContadorPoder1 && mismoContadorPoder2 && mismoContadorPoder3);
 	}
 
 	@Override

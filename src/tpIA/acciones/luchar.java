@@ -27,7 +27,7 @@ public class luchar extends SearchAction{
 				estado.setEnergiaGanada(estado.getEnergiaGanada()+enemigo.getEnergia()*0.2f);
 				enemigo.setDefeated(true);
 				vida=estado.getEnergiaDisponible();
-				if(enemigo.getUbicacionActualEnemigo().getIdentificador()==26){
+				if(enemigo.getUbicacionActualEnemigo()==2){
 					estado.setBossDerrotado(true);
 					//ambiente.setBossDerrotado(true);
 				}
@@ -42,7 +42,7 @@ public class luchar extends SearchAction{
 				else if(estado.getEnergiaGanada() >= estado.getEnergiaInicial()*1.2f) {
 					estado.setPoder3Disponible(true);
 				}
-				logAction();
+				//logAction();
 				return estado;
 			}
 		}
@@ -64,7 +64,7 @@ public class luchar extends SearchAction{
 				estado.setEnergiaGanada(estado.getEnergiaGanada()+enemigo.getEnergia()*0.2f);
 				vida=estado.getEnergiaDisponible();
 				enemigo.setDefeated(true);
-				if(enemigo.getUbicacionActualEnemigo().getIdentificador()==26) {
+				if(enemigo.getUbicacionActualEnemigo()==2) {
 					estado.setBossDerrotado(true);
 					ambiente.setBossDerrotado(true);
 				}
@@ -84,7 +84,7 @@ public class luchar extends SearchAction{
 				//System.out.println(ambiente.getEnergiaPokemon()+ "///////////////////");
 				ambiente.setEnergiaPokemon(ambiente.getEnergiaPokemon()-enemigo.getEnergia()+enemigo.getEnergia()*0.2f);
 				ambiente.getAgentPosition().getOcupante().setDefeated(true);
-				logAction();
+				//logAction();
 				return ambiente;
 			}
 		}
