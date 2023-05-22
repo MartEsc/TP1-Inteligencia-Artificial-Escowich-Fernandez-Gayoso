@@ -9,7 +9,8 @@ import juegoPokemon.PokemonAgentState;
 import juegoPokemon.PokemonEnvironmentState;
 
 public class pelear extends SearchAction{
-
+	float energia = 0f;
+	double costo = 0.0;
 	@Override
 	public SearchBasedAgentState execute(SearchBasedAgentState s) {
 		// TODO Auto-generated method stub
@@ -24,6 +25,7 @@ public class pelear extends SearchAction{
 			estado.setEnergiaGanada(estado. getEnergiaGanada()+ ubicacionActual.getOcupante().getEnergia()*0.2f);
 			ubicacionActual.getOcupante().setDefeated(true);
 			ubicacionActual.getOcupante().setIdentificador(-1);
+			energia = estado.getEnergiaDisponible();
 			if(estado.getEnergiaGanada() >= estado.getEnergiaInicial()*0.25f && !estado.isPoder1Disponible()) {
 				//System.out.println("Poder 1 Desbloquedo");
 				estado.setPoder1Disponible(true);
@@ -45,7 +47,7 @@ public class pelear extends SearchAction{
 	@Override
 	public Double getCost() {
 		// TODO Auto-generated method stub
-		return null;
+		return costo;
 	}
 
 	@Override
@@ -64,7 +66,7 @@ public class pelear extends SearchAction{
 			estado.setEnergiaGanada(estado. getEnergiaGanada()+ ubicacionActualAgente.getOcupante().getEnergia()*0.2f);
 			ubicacionActualAgente.getOcupante().setDefeated(true);
 			ubicacionActualAgente.getOcupante().setIdentificador(-1);
-			
+			energia = estado.getEnergiaDisponible();
 			if(estado.getEnergiaGanada() >= estado.getEnergiaInicial()*0.25f && !estado.isPoder1Disponible()) {
 				estado.setPoder1Disponible(true);
 			}
@@ -85,7 +87,16 @@ public class pelear extends SearchAction{
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "peleando";
+		return "Peleando...gane! Energia final: "+energia;
 	}
 
+	public double getCosto() {
+		return costo;
+	}
+
+	public void setCosto(double costo) {
+		this.costo = costo;
+	}
+
+	
 }

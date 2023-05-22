@@ -11,6 +11,7 @@ import juegoPokemon.PokemonEnvironmentState;
 
 public class tomarPokebolas extends SearchAction{
 	int energiaPokebola = new Random().nextInt(5, 10);
+	double costo = 0.0;
 
 	@Override
 	public SearchBasedAgentState execute(SearchBasedAgentState s) {
@@ -31,7 +32,7 @@ public class tomarPokebolas extends SearchAction{
 	@Override
 	public Double getCost() {
 		// TODO Auto-generated method stub
-		return null;
+		return costo;
 	}
 
 	@Override
@@ -56,4 +57,13 @@ public class tomarPokebolas extends SearchAction{
 		return "Tomando pokebola. Energia recargada: "+energiaPokebola;
 	}
 
+	public double getCosto() {
+		return costo;
+	}
+
+	public void setCosto(double costo) {
+		this.costo = costo;
+	}
+	
+	
 }

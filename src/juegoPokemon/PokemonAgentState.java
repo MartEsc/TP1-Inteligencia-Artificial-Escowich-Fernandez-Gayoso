@@ -1,6 +1,5 @@
 package juegoPokemon;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import frsf.cidisi.faia.agent.Perception;
@@ -20,11 +19,12 @@ public class PokemonAgentState extends SearchBasedAgentState{
 	private boolean noPelea;
 	private HashMap<Nodo, EnemigoGenerico> mapaMundiHeroe;
 	private boolean bossDerrotado;
+	private double costo = 0.0;
 	
 	public PokemonAgentState(float energiaDisponible, float energiaInicial, float energiaGanada, int contadorPoder1,
 			int contadorPoder2, int contadorPoder3, boolean poder1Disponible, boolean poder2Disponible,
 			boolean poder3Disponible, Nodo ubicacionActual, boolean noPelea,
-			boolean bossDerrotado) {
+			boolean bossDerrotado, double costo) {
 		super();
 		this.energiaDisponible = energiaDisponible;
 		this.energiaInicial = energiaInicial;
@@ -38,6 +38,7 @@ public class PokemonAgentState extends SearchBasedAgentState{
 		this.ubicacionActual = ubicacionActual;
 		this.noPelea = noPelea;
 		this.bossDerrotado = bossDerrotado;
+		this.costo = costo;
 	}
 
 	public PokemonAgentState() {
@@ -70,9 +71,10 @@ public class PokemonAgentState extends SearchBasedAgentState{
 		boolean nuevoNoPelea = this.isNoPelea();
 		boolean nuevoBossDerrotado = this.isBossDerrotado();
 		Nodo nuevaUbicacion = this.getUbicacionActual().clone();
+		double nuevoCosto = this.getCosto();
 		PokemonAgentState nuevoEstadoPokemon = new PokemonAgentState(nuevaEnergiaDisponible, nuevaEnergiaInicial, nuevaEnergiaGanada, nuevoContadorPoder1, nuevoContadorPoder2, 
 				nuevoContadorPoder3, nuevoSetPoder1Disponible, nuevoSetPoder2Disponible, nuevoSetPoder3Disponible, nuevaUbicacion,
-				nuevoNoPelea, nuevoBossDerrotado);
+				nuevoNoPelea, nuevoBossDerrotado, nuevoCosto);
 		return nuevoEstadoPokemon;
 	}
 
@@ -232,4 +234,13 @@ public class PokemonAgentState extends SearchBasedAgentState{
 		this.bossDerrotado = bossDerrotado;
 	}
 
+	public double getCosto() {
+		return costo;
+	}
+
+	public void setCosto(double costo) {
+		this.costo = costo;
+	}
+
+	
 }

@@ -10,6 +10,7 @@ import juegoPokemon.PokemonEnvironmentState;
 
 public class huir extends SearchAction{
 	float vida= 0f;
+	double costo = 0.0;
 	@Override
 	public SearchBasedAgentState execute(SearchBasedAgentState s) {
 		// TODO Auto-generated method stub
@@ -31,7 +32,7 @@ public class huir extends SearchAction{
 	@Override
 	public Double getCost() {
 		// TODO Auto-generated method stub
-		return null;
+		return costo;
 	}
 
 	@Override
@@ -60,5 +61,12 @@ public class huir extends SearchAction{
 		// TODO Auto-generated method stub
 		return "Huyendo";
 	}
+	public double getCosto() {
+		return costo;
+	}
+	public void setCosto(double costo) {
+		this.costo = costo;
+	}
 
+	
 }

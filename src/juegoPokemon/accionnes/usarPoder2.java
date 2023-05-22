@@ -8,6 +8,7 @@ import juegoPokemon.PokemonAgentState;
 import juegoPokemon.PokemonEnvironmentState;
 
 public class usarPoder2 extends SearchAction{
+	double costo = 0.0;
 	@Override
 	public SearchBasedAgentState execute(SearchBasedAgentState s) {
 		// TODO Auto-generated method stub
@@ -25,7 +26,7 @@ public class usarPoder2 extends SearchAction{
 	@Override
 	public Double getCost() {
 		// TODO Auto-generated method stub
-		return null;
+		return costo;
 	}
 
 	@Override

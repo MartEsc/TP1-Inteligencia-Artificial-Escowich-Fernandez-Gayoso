@@ -9,7 +9,8 @@ import juegoPokemon.PokemonAgentState;
 import juegoPokemon.PokemonEnvironmentState;
 
 public class moverANodoN extends SearchAction{
-
+	double costo = 0.0;
+	private Nodo viejaUbicacion;
 	private int nuevaUbicacion;
 	
 	public moverANodoN(int nuevaUbicacion) {
@@ -34,6 +35,7 @@ public class moverANodoN extends SearchAction{
 		if((estado.getUbicacionActual().getOcupante().isDefeated()|| estado.isNoPelea()) 
 					&& esVecino){
 				//System.out.println("ME MUEVO A " + nuevoNodo.getIdentificador());
+				viejaUbicacion =  estado.getUbicacionActual();
 				estado.setUbicacionActual(nuevoNodo);
 				estado.setNoPelea(false);
 			//	System.out.println("Me movi al nuevo nodo");
@@ -48,7 +50,7 @@ public class moverANodoN extends SearchAction{
 	@Override
 	public Double getCost() {
 		// TODO Auto-generated method stub
-		return null;
+		return costo;
 	}
 
 	@Override
@@ -66,6 +68,7 @@ public class moverANodoN extends SearchAction{
 		}
 		if ((estado.getUbicacionActual().getOcupante().isDefeated() || estado.isNoPelea()) && esVecino) {
 				// System.out.println("ME MUEVO A " + nuevoNodo.getIdentificador());
+				viejaUbicacion =  estado.getUbicacionActual();
 				estado.setUbicacionActual(nuevoNodo);
 				estado.setNoPelea(false);
 				ambiente.setNodoActualAgent(nuevoNodo.getIdentificador());
@@ -81,7 +84,16 @@ public class moverANodoN extends SearchAction{
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "Moviendose al nodo "+ this.nuevaUbicacion;
+		return "Moviendose desde el nodo: "+ String.valueOf(viejaUbicacion) + "al nodo "+ this.nuevaUbicacion;
 	}
 
+	public double getCosto() {
+		return costo;
+	}
+
+	public void setCosto(double costo) {
+		this.costo = costo;
+	}
+
+	
 }
