@@ -104,14 +104,15 @@ public class Nodo {
 	@Override
 	public String toString() {
 		StringBuffer str = new StringBuffer();
-		str.append("Nodo numero : "+ identificador +
-					"  /  Hay pokebola?: "+ hayPokebola);
-		if(!this.hayPokebola) {
-			str.append("  /  Ocupante: "+ocupante);
-		}
-		else {
-			str.append("  /  No hay ocupante\n");
-		}
+//		str.append("Nodo numero : "+ identificador +
+//					"  /  Hay pokebola?: "+ hayPokebola);
+//		if(!this.hayPokebola) {
+//			str.append("  /  Ocupante: "+ocupante);
+//		}
+//		else {
+//			str.append("  /  No hay ocupante\n");
+//		}
+		str.append(identificador);
 		return str.toString();
 	}
 	

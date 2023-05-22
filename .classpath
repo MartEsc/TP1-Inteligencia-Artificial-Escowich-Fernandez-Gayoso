@@ -6,15 +6,5 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Windows/Downloads/faia-0.4.2/ar.edu.utn.frsf.cidisi.faia/lib/jmathlink.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Windows/Downloads/faia-0.4.2/ar.edu.utn.frsf.cidisi.faia/lib/jpl.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

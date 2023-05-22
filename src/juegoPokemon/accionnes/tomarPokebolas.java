@@ -52,8 +52,7 @@ public class tomarPokebolas extends SearchAction{
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return "Tomando pokebola. Energia recargada: "+energiaPokebola;
+		return "algo\npokeball\n";
 	}
 
 }

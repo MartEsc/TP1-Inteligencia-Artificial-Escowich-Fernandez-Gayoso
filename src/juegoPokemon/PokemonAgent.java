@@ -1,5 +1,7 @@
 package juegoPokemon;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,8 +22,9 @@ import juegoPokemon.accionnes.usarPoder3;
 import frsf.cidisi.faia.agent.search.Problem;
 
 public class PokemonAgent extends SearchBasedAgent{
-
+	private FileWriter myWriter;
 	public PokemonAgent() {
+		
 		ObjetivoPokemonAgent objetivo = new ObjetivoPokemonAgent();
 		PokemonAgentState estado = new PokemonAgentState();
 		this.setAgentState(estado);
@@ -60,6 +63,20 @@ public class PokemonAgent extends SearchBasedAgent{
 				// TODO: handle exception
 				Logger.getLogger(PokemonAgent.class.getName()).log(Level.SEVERE, null, e);
 			}
+		try {
+			myWriter = new FileWriter("logAcciones.txt",true);
+			if(accionSeleccionada.getClass().equals(moverANodoN.class)) {
+				myWriter.write("de");
+				myWriter.write(this.getAgentState().toString());
+			}
+			myWriter.write(accionSeleccionada.toString());
+			myWriter.close();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return accionSeleccionada;	
 	}
 

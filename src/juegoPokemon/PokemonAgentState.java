@@ -106,8 +106,9 @@ public class PokemonAgentState extends SearchBasedAgentState{
 	public String toString() {
 		// TODO Auto-generated method stub
 		String str = ""; 
-        str = str + "\nPosicion = "+ this.getUbicacionActual()  +"\n"; 
-        str = str + "Energia = " + this.getEnergiaDisponible() + "\n"; 
+//        str = str + "\nPosicion = "+ this.getUbicacionActual()  +"\n"; 
+//        str = str + "Energia = " + this.getEnergiaDisponible() + "\n";
+		str= str + this.getUbicacionActual().toString();
         return str;
 	}
 
