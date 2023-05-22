@@ -58,7 +58,7 @@ public class huir extends SearchAction{
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "huyendo\n";
+		return "Huyendo";
 	}
 
 }

@@ -1,8 +1,5 @@
 package juegoPokemon.accionnes;
 
-import java.io.FileWriter;
-import java.io.IOException;
-
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
@@ -62,16 +59,6 @@ public class pelear extends SearchAction{
 				&& estado.getEnergiaDisponible() > ubicacionActualAgente.getOcupante().getEnergia() && !ubicacionActualAgente.getOcupante().isDefeated()) {
 			if(ubicacionActualAgente.getIdentificador()==25) {
 				estado.setBossDerrotado(true);
-				FileWriter myWriter;
-				try {
-					myWriter = new FileWriter("logAcciones.txt",true);
-					myWriter.write("bossDerrotado\n");
-					myWriter.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
 			}
 			estado.setEnergiaDisponible(estado.getEnergiaDisponible()-ubicacionActualAgente.getOcupante().getEnergia()+(ubicacionActualAgente.getOcupante().getEnergia()*0.2f));
 			estado.setEnergiaGanada(estado. getEnergiaGanada()+ ubicacionActualAgente.getOcupante().getEnergia()*0.2f);
@@ -94,7 +81,8 @@ public class pelear extends SearchAction{
 
 	@Override
 	public String toString() {
-		return "algo\npeleando\n";
+		// TODO Auto-generated method stub
+		return "peleando";
 	}
 
 }

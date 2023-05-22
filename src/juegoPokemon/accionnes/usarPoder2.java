@@ -45,6 +45,7 @@ public class usarPoder2 extends SearchAction{
 
 	@Override
 	public String toString() {
-		return "evolucion2\n";
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

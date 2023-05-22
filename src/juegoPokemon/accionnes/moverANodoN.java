@@ -1,8 +1,5 @@
 package juegoPokemon.accionnes;
 
-import java.io.FileWriter;
-import java.io.IOException;
-
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
@@ -14,7 +11,6 @@ import juegoPokemon.PokemonEnvironmentState;
 public class moverANodoN extends SearchAction{
 
 	private int nuevaUbicacion;
-	private int nodoViejo;
 	
 	public moverANodoN(int nuevaUbicacion) {
 		super();
@@ -27,7 +23,6 @@ public class moverANodoN extends SearchAction{
 		PokemonAgentState estado = (PokemonAgentState) s;
 		
 		boolean esVecino = false;
-		nodoViejo = estado.getUbicacionActual().getIdentificador();
 		Nodo nuevoNodo = null;
 		for(Nodo nodo : estado.getUbicacionActual().getNodosVecinos()){
 			if(nodo.getIdentificador()==this.nuevaUbicacion){
@@ -45,7 +40,6 @@ public class moverANodoN extends SearchAction{
 			//	estado.setBossDerrotado(true);
 				//System.out.println("ME MOVI A " + estado.getUbicacionActual());
 				//logAction("de " + ubicacionVieja.toString()+" a "+ estado.getUbicacionActual().getIdentificador());
-				
 				return estado;
 		}
 		return null;
@@ -63,7 +57,6 @@ public class moverANodoN extends SearchAction{
 		PokemonAgentState estado = (PokemonAgentState) ast;
 		PokemonEnvironmentState ambiente = (PokemonEnvironmentState) est;
 		boolean esVecino = false;
-		nodoViejo = estado.getUbicacionActual().getIdentificador();
 		Nodo nuevoNodo = null;
 		for(Nodo nodo : estado.getUbicacionActual().getNodosVecinos()){
 			if(nodo.getIdentificador()==this.nuevaUbicacion){
@@ -87,20 +80,8 @@ public class moverANodoN extends SearchAction{
 
 	@Override
 	public String toString() {
-		return ("a"+String.valueOf(this.nuevaUbicacion)+"\n");
+		// TODO Auto-generated method stub
+		return "Moviendose al nodo "+ this.nuevaUbicacion;
 	}
-//	public void logAction(String nodoPrevio) {
-//		FileWriter myWriter;
-//		try {
-//		myWriter = new FileWriter("logAcciones.txt",true);
-//		myWriter.write("de"+nodoPrevio+"a"+String.valueOf(this.nuevaUbicacion)+"\n");
-//		myWriter.close();
-//		//System.out.println("Logueó movimiento de"+nodoPrevio+" a "+String.valueOf(this.nuevaUbicacion));
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//	}
 
 }
