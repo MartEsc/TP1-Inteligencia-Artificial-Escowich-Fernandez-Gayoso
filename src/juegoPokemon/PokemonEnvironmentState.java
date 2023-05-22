@@ -159,6 +159,7 @@ public class PokemonEnvironmentState extends EnvironmentState{
 		listaNodos.get(28).addVecino(listaNodos.get(27));
 
 		nodoActualAgent = listaNodos.get(0).getIdentificador();
+		energiaAgente = 30f;
 		bossDerrotado = false;
 		generarEnemigos();
 		pokebolas = new ArrayList<Integer>(3);
