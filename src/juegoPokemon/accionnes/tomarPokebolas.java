@@ -1,5 +1,7 @@
 package juegoPokemon.accionnes;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Random;
 
 import frsf.cidisi.faia.agent.search.SearchAction;
@@ -54,6 +56,12 @@ public class tomarPokebolas extends SearchAction{
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
+		/*
+		 * try { FileWriter myWriter = new FileWriter("logAcciones.txt",true);
+		 * myWriter.write("algo\npokeball\n"); myWriter.close();
+		 * //System.out.println("Successfully wrote to the file."); } catch (IOException
+		 * e) { //System.out.println("An error occurred."); e.printStackTrace(); }
+		 */
 		return "Tomando pokebola. Energia recargada: "+energiaPokebola;
 	}
 

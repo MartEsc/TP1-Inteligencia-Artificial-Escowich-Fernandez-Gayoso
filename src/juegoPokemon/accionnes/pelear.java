@@ -1,5 +1,8 @@
 package juegoPokemon.accionnes;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
@@ -87,6 +90,12 @@ public class pelear extends SearchAction{
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
+		/*
+		 * try { FileWriter myWriter = new FileWriter("logAcciones.txt",true);
+		 * myWriter.write("algo\npeleando\n"); myWriter.close();
+		 * //System.out.println("Successfully wrote to the file."); } catch (IOException
+		 * e) { //System.out.println("An error occurred."); e.printStackTrace(); }
+		 */
 		return "Peleando...gane! Energia final: "+energia;
 	}
 

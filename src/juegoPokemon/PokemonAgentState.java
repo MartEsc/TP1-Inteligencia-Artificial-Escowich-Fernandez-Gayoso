@@ -116,7 +116,6 @@ public class PokemonAgentState extends SearchBasedAgentState{
 	@Override
 	public void initState() {
 		// TODO Auto-generated method stub
-		energiaInicial= 30f;
 		energiaDisponible = energiaInicial;
 		energiaGanada = 0f;
 		contadorPoder1=0;
