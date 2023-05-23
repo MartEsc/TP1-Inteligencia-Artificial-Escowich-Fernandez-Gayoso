@@ -94,7 +94,7 @@ public class moverANodoN extends SearchAction{
 		 * //System.out.println("Successfully wrote to the file."); } catch (IOException
 		 * e) { //System.out.println("An error occurred."); e.printStackTrace(); }
 		 */
-		return "Moviendose desde el nodo: "+ String.valueOf(viejaUbicacion) + "al nodo "+ this.nuevaUbicacion;
+		return "Moviendose desde el nodo: "+ String.valueOf(viejaUbicacion.getIdentificador()) + "al nodo "+ this.nuevaUbicacion;
 	}
 
 	public double getCosto() {

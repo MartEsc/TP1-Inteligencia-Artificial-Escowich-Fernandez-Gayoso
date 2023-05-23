@@ -40,7 +40,9 @@ public class PokemonPercepcion extends Perception{
 		StringBuffer str = new StringBuffer();
 		str.append("Estado percepcion pokemon");
 		str.append("; ");
-		str.append(nodoActualAgente);
+		for (Nodo nodo : nodosVecinos) {
+			str.append("\n"+nodo);
+		}
 		return str.toString();
 	}
 
